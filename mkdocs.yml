@@ -39,8 +39,11 @@ plugins:
   - i18n:
       default_language: en
       languages:
-        en: English
-        es: Español
+        - locale: en
+          name: English
+          default: true
+        - locale: es
+          name: Español
   - search  # must come AFTER i18n so it indexes all language variants
   - multirepo:
       cleanup: true
