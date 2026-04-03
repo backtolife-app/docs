@@ -50,13 +50,13 @@ plugins:
       keep_docs_dir: false
       nav_repos:
         - name: app
-          import_url: "https://github.com/backtolife/app?branch=main"
+          import_url: "https://github.com/backtolife/app?branch=develop"
           imports: [docs/*]
         - name: parent
-          import_url: "https://github.com/backtolife/parent?branch=main"
+          import_url: "https://github.com/backtolife/parent?branch=develop"
           imports: [docs/*]
         - name: backend
-          import_url: "https://github.com/backtolife/backend?branch=main"
+          import_url: "https://github.com/backtolife/backend?branch=develop"
           imports: [docs/*]
 
 nav:

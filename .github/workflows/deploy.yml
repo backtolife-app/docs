@@ -37,11 +37,12 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
+      - name: Authenticate git for private repos
+        run: |
+          git config --global url."https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/".insteadOf "https://github.com/"
+
       - name: Build site
         run: mkdocs build
-        env:
-          # Pass a GitHub token so the multirepo plugin can clone private repos
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
