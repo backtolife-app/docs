@@ -37,7 +37,6 @@ theme:
 
 plugins:
   - i18n:
-      default_language: en
       languages:
         - locale: en
           name: English
@@ -50,13 +49,13 @@ plugins:
       keep_docs_dir: false
       nav_repos:
         - name: app
-          import_url: "https://github.com/backtolife/app?branch=develop"
+          import_url: "https://github.com/backtolife-app/user-app?branch=develop"
           imports: [docs/*]
         - name: parent
-          import_url: "https://github.com/backtolife/parent?branch=develop"
+          import_url: "https://github.com/backtolife-app/parent-app?branch=develop"
           imports: [docs/*]
         - name: backend
-          import_url: "https://github.com/backtolife/backend?branch=develop"
+          import_url: "https://github.com/backtolife-app/backend?branch=develop"
           imports: [docs/*]
 
 nav:
