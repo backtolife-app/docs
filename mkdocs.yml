@@ -4,7 +4,7 @@ site_url: https://backtolife.github.io/docs/
 docs_dir: docs
 
 # Allows contributors to click "Edit this page" and land directly in the correct file on GitHub
-edit_uri: edit/main/docs/
+edit_uri: https://github.com/backtolife-app/docs/edit/main/docs/
 
 theme:
   name: material
@@ -36,14 +36,7 @@ theme:
         name: Switch to light mode
 
 plugins:
-  - i18n:
-      languages:
-        - locale: en
-          name: English
-          default: true
-        - locale: es
-          name: Español
-  - search  # must come AFTER i18n so it indexes all language variants
+  - search
   - multirepo:
       cleanup: true
       keep_docs_dir: false
