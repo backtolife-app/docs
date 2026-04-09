@@ -4,7 +4,7 @@ site_url: https://backtolife.github.io/docs/
 docs_dir: docs
 
 # Allows contributors to click "Edit this page" and land directly in the correct file on GitHub
-edit_uri: https://github.com/backtolife-app/edit/main/docs/
+edit_uri: https://github.com/backtolife-app/docs/edit/main/docs/
 
 theme:
   name: material
@@ -51,52 +51,55 @@ plugins:
       nav_repos:
         - name: app
           import_url: "https://github.com/backtolife-app/user-app?branch=main"
+          imports: [docs/*]
         - name: parent
           import_url: "https://github.com/backtolife-app/parent-app?branch=main"
+          imports: [docs/*]
         - name: backend
           import_url: "https://github.com/backtolife-app/backend?branch=main"
+          imports: [docs/*]
   - search
 
 nav:
   - Home: index.md
   - App:
-      - Overview: app/index.md
+      - Overview: app/docs/index.md
       - Setup:
-          - Installation: app/setup/install.md
-          - Configuration: app/setup/configuration.md
+          - Installation: app/docs/setup/install.md
+          - Configuration: app/docs/setup/configuration.md
       - Architecture:
-          - Project Structure: app/architecture/structure.md
-          - State Management: app/architecture/state-management.md
+          - Project Structure: app/docs/architecture/structure.md
+          - State Management: app/docs/architecture/state-management.md
       - Features:
-          - Overview: app/features/overview.md
+          - Overview: app/docs/features/overview.md
       - API:
-          - Endpoint Reference: app/api/endpoints.md
+          - Endpoint Reference: app/docs/api/endpoints.md
       - Security:
-          - Overview: app/security/overview.md
-          - Certificate Pinning: app/security/certificate-pinning.md
+          - Overview: app/docs/security/overview.md
+          - Certificate Pinning: app/docs/security/certificate-pinning.md
   - Parent App:
-      - Overview: parent/index.md
+      - Overview: parent/docs/index.md
       - Setup:
-          - Installation: parent/setup/install.md
-          - Configuration: parent/setup/configuration.md
+          - Installation: parent/docs/setup/install.md
+          - Configuration: parent/docs/setup/configuration.md
       - Architecture:
-          - Project Structure: parent/architecture/structure.md
+          - Project Structure: parent/docs/architecture/structure.md
       - Features:
-          - Overview: parent/features/overview.md
+          - Overview: parent/docs/features/overview.md
       - API:
-          - Endpoint Reference: parent/api/endpoints.md
-          - Data Models: parent/api/models.md
+          - Endpoint Reference: parent/docs/api/endpoints.md
+          - Data Models: parent/docs/api/models.md
       - Security:
-          - Overview: parent/security/overview.md
-          - Certificate Pinning: parent/security/certificate-pinning.md
+          - Overview: parent/docs/security/overview.md
+          - Certificate Pinning: parent/docs/security/certificate-pinning.md
   - Backend:
-      - Overview: backend/index.md
+      - Overview: backend/docs/index.md
       - Setup:
-          - Installation: backend/setup/install.md
-          - Configuration: backend/setup/configuration.md
+          - Installation: backend/docs/setup/install.md
+          - Configuration: backend/docs/setup/configuration.md
       - API:
-          - Authentication: backend/api/authentication.md
-          - Endpoints: backend/api/endpoints.md
+          - Authentication: backend/docs/api/authentication.md
+          - Endpoints: backend/docs/api/endpoints.md
   - Global Guidelines:
       - Issue & PR Format: guidelines/issues.md
       - Project Board: guidelines/project-board.md
