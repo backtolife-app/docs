@@ -12,6 +12,7 @@ theme:
   logo: assets/logo.png
   favicon: assets/logo.png
   features:
+    - navigation.instant
     - navigation.tabs
     - navigation.sections
     - navigation.expand
@@ -57,15 +58,7 @@ plugins:
         - name: backend
           import_url: "https://github.com/backtolife-app/backend?branch=main"
           imports: [docs/*]
-  - i18n:
-      default_language: en
-      languages:
-        - locale: en
-          name: English
-          default: true
-        - locale: es
-          name: Español
-  - search  # must come after i18n to index all languages
+  - search
 
 nav:
   - Home: index.md
