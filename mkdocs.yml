@@ -58,13 +58,13 @@ plugins:
       keep_docs_dir: false
       nav_repos:
         - name: app
-          import_url: "https://github.com/backtolife-app/user-app?branch=develop"
+          import_url: "https://github.com/backtolife-app/user-app?branch=main"
           imports: [docs/*]
         - name: parent
-          import_url: "https://github.com/backtolife-app/parent-app?branch=develop"
+          import_url: "https://github.com/backtolife-app/parent-app?branch=main"
           imports: [docs/*]
         - name: backend
-          import_url: "https://github.com/backtolife-app/backend?branch=develop"
+          import_url: "https://github.com/backtolife-app/backend?branch=main"
           imports: [docs/*]
   - search  # must come after i18n to index all languages
 
