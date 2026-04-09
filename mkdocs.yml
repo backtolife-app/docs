@@ -35,8 +35,24 @@ theme:
         icon: material/brightness-4
         name: Switch to light mode
 
+extra:
+  alternate:
+    - name: English
+      link: /
+      lang: en
+    - name: Español
+      link: /es/
+      lang: es
+
 plugins:
-  - search
+  - i18n:
+      default_language: en
+      languages:
+        - locale: en
+          name: English
+          default: true
+        - locale: es
+          name: Español
   - multirepo:
       cleanup: true
       keep_docs_dir: false
@@ -50,6 +66,7 @@ plugins:
         - name: backend
           import_url: "https://github.com/backtolife-app/backend?branch=develop"
           imports: [docs/*]
+  - search  # must come after i18n to index all languages
 
 nav:
   - Home: index.md
