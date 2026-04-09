@@ -45,14 +45,6 @@ extra:
       lang: es
 
 plugins:
-  - i18n:
-      default_language: en
-      languages:
-        - locale: en
-          name: English
-          default: true
-        - locale: es
-          name: Español
   - multirepo:
       cleanup: true
       keep_docs_dir: false
@@ -66,6 +58,14 @@ plugins:
         - name: backend
           import_url: "https://github.com/backtolife-app/backend?branch=main"
           imports: [docs/*]
+  - i18n:
+      default_language: en
+      languages:
+        - locale: en
+          name: English
+          default: true
+        - locale: es
+          name: Español
   - search  # must come after i18n to index all languages
 
 nav:
