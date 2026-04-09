@@ -1,0 +1,114 @@
+site_name: BackToLife Docs
+site_description: Centralised documentation hub for the Back To Life platform — App, Parent App, and Backend.
+site_url: https://backtolife.github.io/docs/es/
+site_dir: site_es
+docs_dir: docs
+
+edit_uri: https://github.com/backtolife-app/docs/edit/main/docs/
+
+theme:
+  name: material
+  language: es
+  logo: assets/logo.png
+  favicon: assets/logo.png
+  features:
+    - navigation.instant
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.highlight
+    - search.share
+    - search.suggest
+    - content.action.edit
+  palette:
+    - scheme: default
+      primary: teal
+      accent: teal
+      toggle:
+        icon: material/brightness-7
+        name: Cambiar a modo oscuro
+    - scheme: slate
+      primary: teal
+      accent: teal
+      toggle:
+        icon: material/brightness-4
+        name: Cambiar a modo claro
+
+extra:
+  alternate:
+    - name: English
+      link: /docs/
+      lang: en
+    - name: Español
+      link: /docs/es/
+      lang: es
+
+plugins:
+  - multirepo:
+      cleanup: true
+      keep_docs_dir: false
+      nav_repos:
+        - name: app
+          import_url: "https://github.com/backtolife-app/user-app?branch=main"
+          imports: [docs/*]
+        - name: parent
+          import_url: "https://github.com/backtolife-app/parent-app?branch=main"
+          imports: [docs/*]
+        - name: backend
+          import_url: "https://github.com/backtolife-app/backend?branch=main"
+          imports: [docs/*]
+  - i18n:
+      default_language: es
+      languages:
+        - locale: es
+          name: Español
+          default: true
+        - locale: en
+          name: English
+  - search
+
+nav:
+  - Home: index.md
+  - App:
+      - Overview: app/docs/index.md
+      - Setup:
+          - Installation: app/docs/setup/install.md
+          - Configuration: app/docs/setup/configuration.md
+      - Architecture:
+          - Project Structure: app/docs/architecture/structure.md
+          - State Management: app/docs/architecture/state-management.md
+      - Features:
+          - Overview: app/docs/features/overview.md
+      - API:
+          - Endpoint Reference: app/docs/api/endpoints.md
+      - Security:
+          - Overview: app/docs/security/overview.md
+          - Certificate Pinning: app/docs/security/certificate-pinning.md
+  - Parent App:
+      - Overview: parent/docs/index.md
+      - Setup:
+          - Installation: parent/docs/setup/install.md
+          - Configuration: parent/docs/setup/configuration.md
+      - Architecture:
+          - Project Structure: parent/docs/architecture/structure.md
+      - Features:
+          - Overview: parent/docs/features/overview.md
+      - API:
+          - Endpoint Reference: parent/docs/api/endpoints.md
+          - Data Models: parent/docs/api/models.md
+      - Security:
+          - Overview: parent/docs/security/overview.md
+          - Certificate Pinning: parent/docs/security/certificate-pinning.md
+  - Backend:
+      - Overview: backend/docs/index.md
+      - Setup:
+          - Installation: backend/docs/setup/install.md
+          - Configuration: backend/docs/setup/configuration.md
+      - API:
+          - Authentication: backend/docs/api/authentication.md
+          - Endpoints: backend/docs/api/endpoints.md
+  - Global Guidelines:
+      - Issue & PR Format: guidelines/issues.md
+      - Project Board: guidelines/project-board.md
+      - Contributing: guidelines/contributing.md

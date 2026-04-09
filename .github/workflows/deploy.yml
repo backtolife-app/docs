@@ -41,8 +41,16 @@ jobs:
         run: |
           git config --global url."https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/".insteadOf "https://github.com/"
 
-      - name: Build site
+      - name: Build English site
         run: mkdocs build
+
+      - name: Build Spanish site
+        run: mkdocs build -f mkdocs.es.yml
+
+      - name: Merge Spanish site into English site
+        run: |
+          mkdir -p site/es
+          cp -r site_es/* site/es/
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
