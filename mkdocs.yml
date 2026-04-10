@@ -1,5 +1,5 @@
 site_name: BackToLife Docs
-site_description: Centralised documentation hub for the Back To Life platform — App, Parent App, and Backend.
+site_description: Centralised documentation hub for the Back To Life platform — User App, Parent App, and Backend.
 site_url: https://backtolife.github.io/docs/
 docs_dir: docs
 
@@ -44,16 +44,6 @@ extra:
       lang: es
 
 plugins:
-  - multirepo:
-      cleanup: true
-      keep_docs_dir: false
-      nav_repos:
-        - name: app
-          import_url: "https://github.com/backtolife-app/user-app?branch=main"
-        - name: parent
-          import_url: "https://github.com/backtolife-app/parent-app?branch=main"
-        - name: backend
-          import_url: "https://github.com/backtolife-app/backend?branch=main"
   - i18n:
       docs_structure: suffix
       languages:
@@ -66,7 +56,7 @@ plugins:
 
 nav:
   - Home: index.md
-  - App:
+  - User App:
       - Overview: app/index.md
       - Setup:
           - Installation: app/setup/install.md

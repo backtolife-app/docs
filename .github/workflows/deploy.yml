@@ -4,16 +4,15 @@ on:
   push:
     branches:
       - main
-  # Allow triggering a manual deploy from the Actions tab
+  repository_dispatch:
+    types: [docs-update]
   workflow_dispatch:
 
-# Sets the GITHUB_TOKEN permissions needed to deploy to GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Only one deploy at a time; cancel in-progress runs on new push
 concurrency:
   group: pages
   cancel-in-progress: true
@@ -22,11 +21,25 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout master docs repo
+      - name: Checkout docs repo
         uses: actions/checkout@v4
         with:
-          # Full history so git-revision-date plugin works if added later
           fetch-depth: 0
+
+      - name: Clone app docs
+        run: |
+          git clone --depth 1 --branch main https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/backtolife-app/user-app.git /tmp/user-app
+          cp -r /tmp/user-app/docs/. docs/app/
+
+      - name: Clone parent docs
+        run: |
+          git clone --depth 1 --branch main https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/backtolife-app/parent-app.git /tmp/parent-app
+          cp -r /tmp/parent-app/docs/. docs/parent/
+
+      - name: Clone backend docs
+        run: |
+          git clone --depth 1 --branch main https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/backtolife-app/backend.git /tmp/backend
+          cp -r /tmp/backend/docs/. docs/backend/
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -36,10 +49,6 @@ jobs:
 
       - name: Install dependencies
         run: pip install -r requirements.txt
-
-      - name: Authenticate git for private repos
-        run: |
-          git config --global url."https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/".insteadOf "https://github.com/"
 
       - name: Build site
         run: mkdocs build
