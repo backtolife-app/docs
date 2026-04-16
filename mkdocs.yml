@@ -94,6 +94,10 @@ nav:
       - API:
           - Authentication: backend/api/authentication.md
           - Endpoints: backend/api/endpoints.md
+  - Database:
+      - Overview: database/index.md
+      - Schema Reference: database/schema.md
+      - Parental Controls: database/parental-controls.md
   - Global Guidelines:
       - Issue & PR Format: guidelines/issues.md
       - Project Board: guidelines/project-board.md
