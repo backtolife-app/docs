@@ -79,6 +79,7 @@ Parental-control additions (from March 2026 onwards):
 | 2026-03-24 | `unique_email_per_role_in_users_table` |
 | 2026-03-31 | `create_screen_time_daily_table` |
 | 2026-04-16 | `add_weekday_weekend_limits_to_parental_controls_table`, `create_sleep_schedules_table`, `add_always_allowed_apps_to_parental_controls_table` |
+| 2026-04-17 | `add_notification_preferences_to_parental_controls_table`, `add_battery_fields_to_users_table` |
 
 ## Running migrations
 

@@ -31,6 +31,9 @@ The single user table for every role — Admin, standard User (child), and Paren
 | reset_code_expires_at | timestamp nullable | |
 | role | enum (`Admin`, `User`, `Parent`) default `User` | |
 | status | enum (`Pending`, `Rejected`, `Active`, `Deactivate`, `Banned`) default `Active` | |
+| battery_level | unsigned tinyint nullable | *(Added 2026-04-17)* 0–100. Reported by the child app via `PUT /battery`. |
+| battery_charging | boolean nullable | *(Added 2026-04-17)* Whether the device is plugged in. |
+| battery_updated_at | timestamp nullable | *(Added 2026-04-17)* Last battery report time. |
 | remember_token | string | |
 | timestamps + softDeletes | | |
 
@@ -75,6 +78,7 @@ One row per active `family_link`. Holds the parent's configured restrictions for
 | daily_limit_weekday_minutes | int nullable | *(Added 2026-04-16)* Mon–Fri daily cap. |
 | daily_limit_weekend_minutes | int nullable | *(Added 2026-04-16)* Sat–Sun daily cap. |
 | always_allowed_apps | json nullable | *(Added 2026-04-16)* Array of `{ name, emoji?, package? }`. Apps that stay unlocked during sleep windows. |
+| notification_preferences | json nullable | *(Added 2026-04-17)* Per-child notification toggles + quiet hours. Shape: `{ screen_time_exhausted, blocked_app_attempt, extra_time_request, sleep_reminder, daily_summary, child_message, quiet_hours_enabled, quiet_hours_start, quiet_hours_end }` |
 | timestamps | | |
 
 ### `sleep_schedules` *(added 2026-04-16)*

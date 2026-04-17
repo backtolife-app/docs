@@ -31,6 +31,9 @@ Tabla única para todos los roles — `Admin`, `User` (hijo) y `Parent` se difer
 | reset_code_expires_at | timestamp nullable | |
 | role | enum (`Admin`, `User`, `Parent`) default `User` | |
 | status | enum (`Pending`, `Rejected`, `Active`, `Deactivate`, `Banned`) default `Active` | |
+| battery_level | unsigned tinyint nullable | *(Añadida 2026-04-17)* 0–100. Reportado por la app hijo vía `PUT /battery`. |
+| battery_charging | boolean nullable | *(Añadida 2026-04-17)* Si el dispositivo está cargando. |
+| battery_updated_at | timestamp nullable | *(Añadida 2026-04-17)* Hora del último reporte. |
 | remember_token | string | |
 | timestamps + softDeletes | | |
 
@@ -75,6 +78,7 @@ Una fila por `family_link` activo. Guarda las restricciones que el padre configu
 | daily_limit_weekday_minutes | int nullable | *(Añadida 2026-04-16)* Tope diario L–V. |
 | daily_limit_weekend_minutes | int nullable | *(Añadida 2026-04-16)* Tope diario S–D. |
 | always_allowed_apps | json nullable | *(Añadida 2026-04-16)* Array de `{ name, emoji?, package? }`. Apps que siguen disponibles durante ventanas de sueño. |
+| notification_preferences | json nullable | *(Añadida 2026-04-17)* Toggles de notificaciones por hijo + horas silenciosas. Forma: `{ screen_time_exhausted, blocked_app_attempt, extra_time_request, sleep_reminder, daily_summary, child_message, quiet_hours_enabled, quiet_hours_start, quiet_hours_end }` |
 | timestamps | | |
 
 ### `sleep_schedules` *(añadida 2026-04-16)*
