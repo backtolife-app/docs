@@ -98,6 +98,8 @@ nav:
       - Overview: database/index.md
       - Schema Reference: database/schema.md
       - Parental Controls: database/parental-controls.md
+  - Admin Interface:
+      - Overview: backend/admin/index.md
   - Global Guidelines:
       - Issue & PR Format: guidelines/issues.md
       - Project Board: guidelines/project-board.md
