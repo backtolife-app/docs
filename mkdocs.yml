@@ -98,6 +98,10 @@ nav:
       - Overview: database/index.md
       - Schema Reference: database/schema.md
       - Parental Controls: database/parental-controls.md
+  - Services:
+      - Overview: services/index.md
+      - Email Provider: services/email.md
+      - Sentry: services/sentry.md
   - Admin Interface:
       - Overview: backend/admin/index.md
   - Global Guidelines:
