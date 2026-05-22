@@ -2,10 +2,10 @@
 
 Bienvenido al centro de documentación centralizado de la plataforma **Back To Life**. Este sitio reúne la documentación de los tres repositorios en una única referencia con búsqueda integrada.
 
-## Servicios
+## Repositorios
 
-| Servicio | Descripción | Repositorio |
-|----------|-------------|-------------|
+| Repositorio | Descripción | Ruta |
+|-------------|-------------|------|
 | [App](app/index.md) | Aplicación móvil Flutter — cliente iOS y Android del niño | `app/` |
 | [App para Padres](parent/index.md) | Aplicación Flutter para padres — panel, controles, gráficos de tiempo de pantalla | `parent/` |
 | [Backend](backend/index.md) | API REST Laravel y panel de administración — compartido por ambas apps móviles | `backend/` |

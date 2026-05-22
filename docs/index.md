@@ -2,10 +2,10 @@
 
 Welcome to the centralised documentation hub for the **Back To Life** platform. This site pulls together documentation from all three repositories into a single, searchable reference.
 
-## Services
+## Repositories
 
-| Service | Description | Repository |
-|---------|-------------|------------|
+| Repository | Description | Path |
+|------------|-------------|------|
 | [App](app/index.md) | Flutter mobile app — iOS & Android child-side client | `app/` |
 | [Parent App](parent/index.md) | Flutter parent companion app — dashboard, controls, screen time charts | `parent/` |
 | [Backend](backend/index.md) | Laravel REST API & admin panel — shared by both mobile apps | `backend/` |
