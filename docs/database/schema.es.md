@@ -112,7 +112,7 @@ Totales por app y por día que reporta la app hijo. Fuente del gráfico de barra
 | user_id | FK → `users.id` cascade delete | Usuario hijo. |
 | date | date | Fecha local en la zona del hijo (enviada por cliente). |
 | timezone | string(64) | Nombre IANA. |
-| app | string(32) | Hoy: `youtube` \| `instagram`. |
+| app | string(32) | Uno de `youtube` \| `instagram` \| `twitter` \| `tiktok`. |
 | source | string(16) | `webview` (dentro de BackToLife) \| `native` (UsageStats). |
 | seconds | unsigned int default 0 | Total del día. |
 | updated_at | timestamp | Se refresca con `useCurrent()->useCurrentOnUpdate()`. Sin `created_at`. |

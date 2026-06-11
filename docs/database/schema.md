@@ -112,7 +112,7 @@ Per-app, per-day totals reported by the child app. This is what the parent dashb
 | user_id | FK → `users.id` cascade delete | Child user. |
 | date | date | Local date in the child's timezone (client-supplied). |
 | timezone | string(64) | IANA name. |
-| app | string(32) | Currently `youtube` \| `instagram`. |
+| app | string(32) | One of `youtube` \| `instagram` \| `twitter` \| `tiktok`. |
 | source | string(16) | `webview` (tracked inside BackToLife) \| `native` (tracked via UsageStats). |
 | seconds | unsigned int default 0 | Day's total. |
 | updated_at | timestamp | Auto-refreshed via `useCurrent()->useCurrentOnUpdate()`. No `created_at`. |

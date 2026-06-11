@@ -6,7 +6,7 @@ Proveedores SaaS externos de los que depende la plataforma Back To Life. Cada se
 
 | Servicio | Proveedor | Usado por | Propósito |
 |----------|-----------|-----------|-----------|
-| [Proveedor de Email](email.md) | Brevo | Backend | Email transaccional — OTP, restablecimiento de contraseña, email de reintento de registro |
+| [Proveedor de Email](email.md) | MailerSend | Backend | Email transaccional: OTP, restablecimiento de contraseña |
 | [Reporte de Errores](sentry.md) | Sentry | Backend, App de Usuario, App de Padres | Captura y alertas de excepciones inesperadas |
 
 ## Convenciones

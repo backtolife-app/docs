@@ -6,7 +6,7 @@ External SaaS providers the Back To Life platform depends on. Each service has i
 
 | Service | Provider | Used by | Purpose |
 |---------|----------|---------|---------|
-| [Email Provider](email.md) | Brevo | Backend | Transactional email — OTP, password reset, signup-retry apology |
+| [Email Provider](email.md) | MailerSend | Backend | Transactional email: OTP, password reset |
 | [Error Reporting](sentry.md) | Sentry | Backend, User App, Parent App | Unexpected-exception capture and alerting |
 
 ## Conventions
