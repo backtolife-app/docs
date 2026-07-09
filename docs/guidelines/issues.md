@@ -32,38 +32,32 @@ enhancement: Improve chart animation performance
 
 ---
 
-### Rule 2 — Bilingual Descriptions
+### Rule 2 — Describe it from the user's point of view
 
-Every issue description must be written in **both English and Spanish**. English first, Spanish immediately after.
+Write the description in plain language, from the **user's perspective** — what they want to do, what they should see or be able to do, and why it matters to them. Describe the product and the experience, not how to build it. The technical "how" (files, endpoints, code) is worked out by whoever picks up the task, not here.
+
+A good description answers:
+
+- **Who** it's for — a parent, a child, an admin.
+- **What** they want to do, or the problem they run into today.
+- **What should happen** — the expected behaviour or result.
+- **Why** it matters to them.
+
+Write it in **both English and Spanish** — English first, Spanish immediately after.
 
 ```markdown
 ## Description (EN)
 
-We need to compress user avatars before uploading to S3 to reduce storage costs.
+As a parent, I want to see how much screen time my child used today right on the home screen, so I can check it at a glance without opening any menus. Today I have to go into the stats page every time, which is slow and easy to forget.
 
 ## Descripción (ES)
 
-Necesitamos comprimir los avatares de los usuarios antes de subirlos a S3 para reducir costos de almacenamiento.
+Como padre, quiero ver cuánto tiempo de pantalla usó mi hijo hoy directamente en la pantalla de inicio, para poder revisarlo de un vistazo sin abrir ningún menú. Hoy tengo que entrar a la página de estadísticas cada vez, lo cual es lento y fácil de olvidar.
 ```
 
 ---
 
-### Rule 3 — Technical Specs
-
-For any task that is not a trivial fix, include a **Technical Specs** section with specific files, endpoints, models, and logic constraints.
-
-```markdown
-## Technical Specs
-
-- **File(s):** `lib/features/profile/data/rx_post_avatar/`, `ProfileUpdateController.php`
-- **Endpoint / Model / Screen:** `POST /profile-avatar-upload`, `ProfileUpdateController`
-- **Logic constraints:** Max size 2 MB after compression, JPEG output only
-- **Dependencies or blockers:** Requires `image_compress` package bump to ^6.0
-```
-
----
-
-### Rule 4 — Issue Type
+### Rule 3 — Issue Type
 
 When opening an issue on GitHub, select one **Type**:
 
@@ -75,7 +69,7 @@ When opening an issue on GitHub, select one **Type**:
 
 ---
 
-### Rule 5 — Label Requirements
+### Rule 4 — Label Requirements
 
 Every issue must have **one label from each of the five groups** before being moved out of Triage.
 
@@ -106,12 +100,14 @@ Every issue must have **one label from each of the five groups** before being mo
 
 #### Sizing (Effort Estimate)
 
-| Label | Effort              |
-| ----- | ------------------- |
-| `S`   | 1–2 hours           |
-| `M`   | 1–3 days            |
-| `L`   | A full week or more |
-| `XL`  | More than two weeks |
+How long the task is expected to take. **Always size against the Full-time column.** The Part-time column is the equivalent wall-clock time for someone working ~2 days a week and is shown for scheduling reference only — never estimate directly from it.
+
+| Label | Full-time (reference) | Part-time (~2 days/week) |
+| ----- | --------------------- | ------------------------ |
+| `S`   | 1 calendar day        | 3 calendar days          |
+| `M`   | 3 calendar days       | 7 calendar days          |
+| `L`   | 7 calendar days       | 14 calendar days         |
+| `XL`  | 14 calendar days      | 28 calendar days         |
 
 #### Task Type
 

@@ -20,7 +20,7 @@ The **BackToLife** project board is the single place to track all work across th
 
 ### 1. Create the issue
 
-Open a new issue using the **Standard Task** template. Fill in the title, bilingual description, technical specs, and all five label groups. See the [Issue & PR Format](issues.md) guide for the full rules.
+Open a new issue using the **Standard Task** template. Fill in the title, a bilingual description written from the user's point of view, and all five label groups. See the [Issue & PR Format](issues.md) guide for the full rules.
 
 ### 2. Place it on the board
 
@@ -29,7 +29,7 @@ After creating the issue, add it to the **BackToLife** project from the issue's 
 ### 3. Move to Ready when it's defined
 
 Only move an issue to **Ready** when:
-- The description and technical specs are complete
+- The user-POV description is complete
 - Labels (Platform, OS, Priority, Sizing, Task Type) are all set
 - It is actually prioritised for the current or upcoming work cycle
 

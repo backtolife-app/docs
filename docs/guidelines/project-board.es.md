@@ -20,7 +20,7 @@ El proyecto **BackToLife** en GitHub es el único lugar donde se rastrea todo el
 
 ### 1. Crear el issue
 
-Abre un nuevo issue usando la plantilla **Standard Task**. Rellena el título, la descripción bilingüe, las especificaciones técnicas y los cinco grupos de etiquetas. Ver la guía de [Formato de Issues y PRs](issues.es.md) para las reglas completas.
+Abre un nuevo issue usando la plantilla **Standard Task**. Rellena el título, una descripción bilingüe escrita desde el punto de vista del usuario, y los cinco grupos de etiquetas. Ver la guía de [Formato de Issues y PRs](issues.es.md) para las reglas completas.
 
 ### 2. Añadirlo al panel
 
@@ -29,7 +29,7 @@ Tras crear el issue, añádelo al proyecto **BackToLife** desde la barra lateral
 ### 3. Mover a Ready cuando esté definido
 
 Solo mueve un issue a **Ready** cuando:
-- La descripción y las especificaciones técnicas estén completas
+- La descripción desde el punto de vista del usuario esté completa
 - Todas las etiquetas (Plataforma, SO, Prioridad, Sizing, Tipo de Tarea) estén asignadas
 - Esté realmente priorizado para el ciclo de trabajo actual o próximo
 

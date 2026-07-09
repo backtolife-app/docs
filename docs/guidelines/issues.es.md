@@ -32,37 +32,32 @@ enhancement: Mejorar animación del gráfico de barras
 
 ---
 
-### Regla 2 — Descripciones Bilingües
+### Regla 2 — Descríbelo desde el punto de vista del usuario
 
-Cada descripción de issue debe estar escrita en **inglés y español**. Primero inglés, español inmediatamente después.
+Escribe la descripción en lenguaje sencillo, desde la **perspectiva del usuario**: qué quiere hacer, qué debería ver o poder hacer, y por qué le importa. Describe el producto y la experiencia, no cómo construirlo. El "cómo" técnico (archivos, endpoints, código) lo resuelve quien tome la tarea, no aquí.
+
+Una buena descripción responde:
+
+- **Quién** la necesita — un padre, un niño, un administrador.
+- **Qué** quiere hacer, o el problema que tiene hoy.
+- **Qué debería pasar** — el comportamiento o resultado esperado.
+- **Por qué** le importa.
+
+Escríbela en **inglés y español** — primero inglés, español inmediatamente después.
 
 ```markdown
 ## Description (EN)
 
-We need to compress user avatars before uploading to S3 to reduce storage costs.
+As a parent, I want to see how much screen time my child used today right on the home screen, so I can check it at a glance without opening any menus. Today I have to go into the stats page every time, which is slow and easy to forget.
 
 ## Descripción (ES)
 
-Necesitamos comprimir los avatares de los usuarios antes de subirlos a S3 para reducir costos de almacenamiento.
+Como padre, quiero ver cuánto tiempo de pantalla usó mi hijo hoy directamente en la pantalla de inicio, para poder revisarlo de un vistazo sin abrir ningún menú. Hoy tengo que entrar a la página de estadísticas cada vez, lo cual es lento y fácil de olvidar.
 ```
 
 ---
 
-### Regla 3 — Especificaciones Técnicas
-
-Para cualquier tarea que no sea una corrección trivial, incluir una sección de **Especificaciones Técnicas** con archivos concretos, endpoints, modelos y restricciones de lógica.
-
-```markdown
-
-- **File(s):** `lib/features/profile/data/rx_post_avatar/`, `ProfileUpdateController.php`
-- **Endpoint / Model / Screen:** `POST /profile-avatar-upload`, `ProfileUpdateController`
-- **Logic constraints:** Tamaño máximo 2 MB tras comprimir, solo salida JPEG
-- **Dependencies or blockers:** Requiere subir `image_compress` a ^6.0
-```
-
----
-
-### Regla 4 — Tipo de Issue
+### Regla 3 — Tipo de Issue
 
 Al abrir un issue en GitHub, selecciona un **Tipo**:
 
@@ -74,7 +69,7 @@ Al abrir un issue en GitHub, selecciona un **Tipo**:
 
 ---
 
-### Regla 5 — Requisitos de Etiquetas
+### Regla 4 — Requisitos de Etiquetas
 
 Cada issue debe tener **una etiqueta de cada uno de los cinco grupos** antes de salir de Triaje.
 
@@ -105,12 +100,14 @@ Cada issue debe tener **una etiqueta de cada uno de los cinco grupos** antes de 
 
 #### Sizing (Estimación de Esfuerzo)
 
-| Etiqueta | Esfuerzo                  |
-| -------- | ------------------------- |
-| `S`      | 1–2 horas                 |
-| `M`      | 1–3 días                  |
-| `L`      | Una semana completa o más |
-| `XL`     | Más de dos semanas        |
+Cuánto se espera que tome la tarea. **Estima siempre con la columna Tiempo completo.** La columna Medio tiempo es el tiempo de calendario equivalente para alguien que trabaja ~2 días por semana, mostrada solo como referencia de planificación — nunca estimes directamente con ella.
+
+| Etiqueta | Tiempo completo (referencia) | Medio tiempo (~2 días/semana) |
+| -------- | ---------------------------- | ----------------------------- |
+| `S`      | 1 día de calendario          | 3 días de calendario          |
+| `M`      | 3 días de calendario         | 7 días de calendario          |
+| `L`      | 7 días de calendario         | 14 días de calendario         |
+| `XL`     | 14 días de calendario        | 28 días de calendario         |
 
 #### Tipo de Tarea
 

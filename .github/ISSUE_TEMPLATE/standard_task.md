@@ -35,7 +35,7 @@ Projects: "BackToLife"
   Leave blank — we do not use milestones.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  LABELS — Rule 5 (add one from each group before submitting)
+  LABELS — Rule 4 (add one from each group before submitting)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
   PLATFORM — which app does this affect?
@@ -55,11 +55,12 @@ Projects: "BackToLife"
     medium      Standard task
     low         Nice-to-have / backlog
 
-  SIZING (effort estimate)
-    S     1–2 hours
-    M     1–3 days
-    L     A full week or more
-    XL    More than two weeks
+  SIZING (effort estimate) — always estimate against the Full-time reference.
+  The part-time figure (~2 days/week) is wall-clock only, for scheduling.
+    S     1 calendar day    (part-time: 3 days)
+    M     3 calendar days   (part-time: 7 days)
+    L     7 calendar days   (part-time: 14 days)
+    XL    14 calendar days  (part-time: 28 days)
 
   TASK TYPE
     bug               Something isn't working
@@ -71,26 +72,20 @@ Projects: "BackToLife"
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   DESCRIPTION — Rule 2 (bilingual: English first, then Spanish)
+
+  Describe it from the USER's point of view, in plain language:
+    • Who it's for (a parent, a child, an admin)
+    • What they want to do, or the problem they hit today
+    • What should happen — the expected behaviour or result
+    • Why it matters to them
+  Describe the product and the experience, not how to build it.
+  No files, endpoints, or code — the technical "how" is decided later.
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 -->
 
-**English:** <!-- What needs to be done and why? -->
+**English:** <!-- As a <user>, I want <goal>, so that <benefit>. What's the situation today? -->
 
-**Español:** <!-- ¿Qué hay que hacer y por qué? -->
-
----
-
-**Technical Specs**
-
-<!--
-  Required for anything that is not a trivial fix — Rule 3.
-  List specific files, screens, endpoints, models, or logic constraints.
--->
-
-- **File(s):**
-- **Endpoint / Model / Screen:**
-- **Logic constraints:**
-- **Dependencies or blockers:**
+**Español:** <!-- Como <usuario>, quiero <objetivo>, para <beneficio>. ¿Cuál es la situación hoy? -->
 
 ---
 
