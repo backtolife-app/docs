@@ -71,7 +71,7 @@ Al abrir un issue en GitHub, selecciona un **Tipo**:
 
 ### Regla 4 — Requisitos de Etiquetas
 
-Cada issue debe tener **una etiqueta de cada uno de los cinco grupos** antes de salir de Triaje.
+Las etiquetas se seleccionan en la **barra lateral de GitHub** (lado derecho del issue), no se escriben en el cuerpo. Cada issue debe tener **una etiqueta de cada uno de los cinco grupos** — incluido el **Tamaño** (`S`/`M`/`L`/`XL`) — antes de salir de Triaje.
 
 #### Plataforma — ¿qué app afecta?
 
@@ -119,6 +119,35 @@ Cuánto se espera que tome la tarea. **Estima siempre con la columna Tiempo comp
 | `refactor`         | Limpiar o reestructurar código                       |
 | `documentation`    | Mejoras o adiciones a la documentación               |
 | `good first issue` | Adecuado para nuevos colaboradores                   |
+
+---
+
+### Ejemplo Completo
+
+Un issue completo. Solo el **título** y la **descripción** van en el cuerpo — todo lo demás se selecciona en la **barra lateral** de GitHub.
+
+**Título** (cuerpo)
+
+```
+feat: Show today's screen time on the parent home screen
+```
+
+**Descripción** (cuerpo)
+
+```markdown
+## Description (EN)
+
+As a parent, I want to see how much screen time my child used today right on the home screen, so I can check it at a glance without opening any menus. Today I have to go into the stats page every time, which is slow and easy to forget.
+
+## Descripción (ES)
+
+Como padre, quiero ver cuánto tiempo de pantalla usó mi hijo hoy directamente en la pantalla de inicio, para poder revisarlo de un vistazo sin abrir ningún menú. Hoy tengo que entrar a la página de estadísticas cada vez, lo cual es lento y fácil de olvidar.
+```
+
+**Barra lateral** (no el cuerpo)
+
+- **Type:** Feature — **Projects:** BackToLife
+- **Etiquetas:** `parent app` · `both iOS and android` · `medium` · `M` · `feature`
 
 ---
 
