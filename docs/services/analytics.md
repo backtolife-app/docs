@@ -26,9 +26,7 @@ Screen views are automatic: PostHog's route observer sits on each app's root nav
 
 **User app**
 
-`/LoadingScreen` `/NavigationScreen` `/LoginScreen` `/SignUpScreen` `/SignUpEmailVerifyScreen` `/EmailVerifyScreen` `/SuccessfulScreen` `/ForgotPasswordScreen` `/PasswordResetScreen` `/EditProfileScreen` `/ChangePasswordScreen` `/PermissionsScreen` `/InstagramWebViewScreen` `/TwitterWebViewScreen` `/TikTokWebViewScreen` `/StrickScheduleScreen` `/DailyLimitScreen` `/DesiredUseScreen` `/AlwaysOnScreen` `/BlockScreen` `/LinkToParentScreen` `/LinkedParentsScreen` `/FamilyBlockPasscodeScreen` `/SetupGuideScreen` `/AndroidPermissionWizard` `/FiltersFeaturesScreen` `/HowAppWorksScreen` `/DailyLimitsHelpScreen` `/AlwaysOnHelpScreen` `/BedtimeHelpScreen` `/AlwaysHiddenHelpScreen` `/DigitalCleaningTipsScreen` `/HomeWidgetsScreen` `/InviteFriendsScreen` `/AnalyticsScreen` `/LearnMoreScreen` `/WhatsNewScreen` `/FaqScreen` `/AboutScreen` `/ReportABugScreen` `/TalkToTeamScreen`
-
-The YouTube webview is not a named route yet, so its view is not reported; naming it is a one-line change in the user app when wanted.
+`/LoadingScreen` `/NavigationScreen` `/LoginScreen` `/SignUpScreen` `/SignUpEmailVerifyScreen` `/EmailVerifyScreen` `/SuccessfulScreen` `/ForgotPasswordScreen` `/PasswordResetScreen` `/EditProfileScreen` `/ChangePasswordScreen` `/PermissionsScreen` `/InstagramWebViewScreen` `/YoutubeWebViewScreen` `/TwitterWebViewScreen` `/TikTokWebViewScreen` `/StrickScheduleScreen` `/DailyLimitScreen` `/DesiredUseScreen` `/AlwaysOnScreen` `/BlockScreen` `/LinkToParentScreen` `/LinkedParentsScreen` `/FamilyBlockPasscodeScreen` `/SetupGuideScreen` `/AndroidPermissionWizard` `/FiltersFeaturesScreen` `/HowAppWorksScreen` `/DailyLimitsHelpScreen` `/AlwaysOnHelpScreen` `/BedtimeHelpScreen` `/AlwaysHiddenHelpScreen` `/DigitalCleaningTipsScreen` `/HomeWidgetsScreen` `/InviteFriendsScreen` `/AnalyticsScreen` `/LearnMoreScreen` `/WhatsNewScreen` `/FaqScreen` `/AboutScreen` `/ReportABugScreen` `/TalkToTeamScreen`
 
 ## Events sent by the apps
 
