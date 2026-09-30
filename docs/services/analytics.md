@@ -22,11 +22,11 @@ Screen views are automatic: PostHog's route observer sits on each app's root nav
 
 **Parent app**
 
-`/LoadingScreen` `/OnboardingFlowScreen` `/LoginScreen` `/SignUpScreen` `/SignUpEmailVerifyScreen` `/EmailVerifyScreen` `/SuccessfulScreen` `/AcquisitionSourceScreen` `/ForgotPasswordScreen` `/PasswordResetScreen` `/PasswordResetSuccessfulScreen` `/NavigationScreen` `/SettingsScreen` `/LinkChildScreen` `/EnterCodeScreen` `/SetupWizardScreen` `/SetParentPasscodeScreen` `/ChildDetailScreen` `/EditProfileScreen` `/ChildErrorScreen` `/ChangePasswordScreen` `/NotificationsSettingsScreen` `/ParentPinScreen` `/ReportABugScreen` `/AboutScreen` `/HowAppWorksScreen` `/HowWorksFiltersScreen` `/HowWorksScheduleScreen` `/HowWorksDailyLimitsScreen` `/HowWorksAlwaysOnScreen` `/HowWorksAlldayScreen` `/HowWorksBedtimeScreen` `/RuleStrictScheduleScreen` `/RuleAlldayFiltersScreen` `/AppBlockingSetupScreen` `/UnblockRequestsScreen`
+`/LoadingScreen` `/OnboardingFlowScreen` `/LoginScreen` `/SignUpScreen` `/SignUpEmailVerifyScreen` `/EmailVerifyScreen` `/SuccessfulScreen` `/AcquisitionSourceScreen` `/ForgotPasswordScreen` `/PasswordResetScreen` `/PasswordResetSuccessfulScreen` `/NavigationScreen` `/SettingsScreen` `/LinkChildScreen` `/EnterCodeScreen` `/SetupWizardScreen` `/SetParentPasscodeScreen` `/ChildDetailScreen` `/EditProfileScreen` `/ChildErrorScreen` `/ChangePasswordScreen` `/NotificationsSettingsScreen` `/ParentPinScreen` `/ReportABugScreen` `/TalkToTeamScreen` `/AboutScreen` `/HowAppWorksScreen` `/HowWorksFiltersScreen` `/HowWorksScheduleScreen` `/HowWorksDailyLimitsScreen` `/HowWorksAlwaysOnScreen` `/HowWorksAlldayScreen` `/HowWorksBedtimeScreen` `/RuleStrictScheduleScreen` `/RuleAlldayFiltersScreen` `/AppBlockingSetupScreen` `/UnblockRequestsScreen`
 
 **User app**
 
-`/LoadingScreen` `/NavigationScreen` `/LoginScreen` `/SignUpScreen` `/SignUpEmailVerifyScreen` `/EmailVerifyScreen` `/SuccessfulScreen` `/ForgotPasswordScreen` `/PasswordResetScreen` `/EditProfileScreen` `/ChangePasswordScreen` `/PermissionsScreen` `/InstagramWebViewScreen` `/TwitterWebViewScreen` `/TikTokWebViewScreen` `/StrickScheduleScreen` `/DailyLimitScreen` `/DesiredUseScreen` `/AlwaysOnScreen` `/BlockScreen` `/LinkToParentScreen` `/LinkedParentsScreen` `/FamilyBlockPasscodeScreen` `/SetupGuideScreen` `/AndroidPermissionWizard` `/FiltersFeaturesScreen` `/HowAppWorksScreen` `/DailyLimitsHelpScreen` `/AlwaysOnHelpScreen` `/BedtimeHelpScreen` `/AlwaysHiddenHelpScreen` `/DigitalCleaningTipsScreen` `/HomeWidgetsScreen` `/InviteFriendsScreen` `/AnalyticsScreen` `/LearnMoreScreen` `/WhatsNewScreen` `/FaqScreen` `/AboutScreen` `/ReportABugScreen`
+`/LoadingScreen` `/NavigationScreen` `/LoginScreen` `/SignUpScreen` `/SignUpEmailVerifyScreen` `/EmailVerifyScreen` `/SuccessfulScreen` `/ForgotPasswordScreen` `/PasswordResetScreen` `/EditProfileScreen` `/ChangePasswordScreen` `/PermissionsScreen` `/InstagramWebViewScreen` `/TwitterWebViewScreen` `/TikTokWebViewScreen` `/StrickScheduleScreen` `/DailyLimitScreen` `/DesiredUseScreen` `/AlwaysOnScreen` `/BlockScreen` `/LinkToParentScreen` `/LinkedParentsScreen` `/FamilyBlockPasscodeScreen` `/SetupGuideScreen` `/AndroidPermissionWizard` `/FiltersFeaturesScreen` `/HowAppWorksScreen` `/DailyLimitsHelpScreen` `/AlwaysOnHelpScreen` `/BedtimeHelpScreen` `/AlwaysHiddenHelpScreen` `/DigitalCleaningTipsScreen` `/HomeWidgetsScreen` `/InviteFriendsScreen` `/AnalyticsScreen` `/LearnMoreScreen` `/WhatsNewScreen` `/FaqScreen` `/AboutScreen` `/ReportABugScreen` `/TalkToTeamScreen`
 
 The YouTube webview is not a named route yet, so its view is not reported; naming it is a one-line change in the user app when wanted.
 
@@ -69,6 +69,12 @@ The paywall in both apps is RevenueCat's own screen. Plan taps and the purchase 
 | `schedule_created` | Parent, User | A rule is saved. Fired at the start of the save, so a failed save still counts as an attempt. | `rule`: Parent `bedtime` `screen_time` `strict_schedule` `allday_filters` `always_on`. User `strict_schedule`. |
 | `filters_changed` | Parent | A content filter switch is flipped. | `filter`: the filter key. `enabled`: true/false. `where`: `school`, `night`, `setup_wizard`. |
 | `limit_enabled` | User | The child saves their own daily limit. | `enabled`: true when a limit is set, false when cleared. |
+
+### Support
+
+| Event | App | When | Properties |
+|-------|-----|------|------------|
+| `support_call_tapped` | Parent, User | "Book a call" is tapped on the Talk to the team screen, before the booking page opens. | `source: support_row`. |
 
 ### Scroll sessions
 
