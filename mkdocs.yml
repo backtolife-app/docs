@@ -102,6 +102,7 @@ nav:
       - Overview: services/index.md
       - Email Provider: services/email.md
       - Sentry: services/sentry.md
+      - Product Analytics: services/analytics.md
   - Admin Interface:
       - Overview: backend/admin/index.md
   - Global Guidelines:
