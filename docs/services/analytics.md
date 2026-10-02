@@ -85,7 +85,7 @@ The paywall in both apps is RevenueCat's own screen. Plan taps and the purchase 
 
 | Event | App | When | Properties |
 |-------|-----|------|------------|
-| `scroll_budget_reached` | User | The posts seen in a sitting reach the feed's budget and the end-of-feed overlay goes up. Fires again if it is reached a second time after the extension. | `surface`: the probe surface, `ig_feed` today. `items`: posts seen. `extended`: true on the second time. |
+| `scroll_budget_reached` | User | The posts seen in a sitting reach the feed's budget and the end-of-feed overlay goes up. Fires again if it is reached a second time after the extension. | `surface`: the probe surface, `ig_feed` or `x_timeline` (`yt_home` once it has numbers). `items`: posts seen. `extended`: true on the second time. |
 | `scroll_budget_extended` | User | "Ten more posts" is tapped, once per sitting. | `surface`. |
 | `scroll_budget_done` | User | "Done for now" is tapped and the webview closes. | `surface`. |
 
