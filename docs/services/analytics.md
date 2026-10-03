@@ -41,6 +41,16 @@ Names are `snake_case`. "Parent" and "User" say which app sends the event.
 | `onboarding_skipped` | User | The tour is skipped. | `flow: tour`, `step`: where it was skipped. |
 | `acquisition_source_selected` | Parent | The "how did you hear about us" step is answered. Not fired on skip. | `source`: `reddit` `facebook` `instagram` `tiktok` `youtube` `press` `friend` `school` `search` `other`. *Pending: added when the acquisition-source branch merges.* |
 
+### Sign-in (parent app, issue #107)
+
+Screen views alone do not show where a parent gets stuck, so the outcome of each sign-in attempt is an event. A parent cancelling the Google or Apple sheet is not a failure and sends nothing.
+
+| Event | App | When | Properties |
+|-------|-----|------|------------|
+| `signup_completed` | Parent | An account is created: the email code is accepted, or Google / Apple sign-in creates a new account. | `method`: `email`, `google`, `apple`. |
+| `login_completed` | Parent | An existing account signs in. | `method`: as above. |
+| `login_failed` | Parent | A sign-in or sign-up call fails. | `method`: as above. `reason`: `invalid_credentials` (wrong email or password), `not_allowed` (unverified account or wrong account type), `invalid_input`, `too_many_attempts`, `offline` (no answer from the backend), `server` (backend error), `provider` (Google or Apple failed before the backend was called), `http_<code>`, `other`. Never the server's message text. |
+
 ### Paywall
 
 The paywall in both apps is RevenueCat's own screen. Plan taps and the purchase start happen inside it, so the apps report that it was shown and how it ended; the purchase itself comes from RevenueCat (next section).
