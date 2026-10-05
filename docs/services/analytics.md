@@ -57,7 +57,7 @@ The paywall in both apps is RevenueCat's own screen. Plan taps and the purchase 
 
 | Event | App | When | Properties |
 |-------|-----|------|------------|
-| `paywall_shown` | Parent, User | RevenueCat's paywall was presented. Not fired when the user is already entitled and nothing shows. | `trigger`: what opened it. Parent: `premium_lock`. User: `premium_gate`, `family_premium`, `pro_row`, `profile`. |
+| `paywall_shown` | Parent, User | RevenueCat's paywall was presented. Not fired when the user is already entitled and nothing shows. | `trigger`: what opened it. Parent: `premium_lock`. User: `premium_gate`, `family_premium`, `pro_row`, `profile`, `feed_counter` (the feed pill's "Block them" without Premium). |
 | `purchase_completed` | Parent, User | The paywall closed with a purchase. | `result: purchased`, `trigger`. |
 | `paywall_closed` | Parent, User | The paywall closed without a purchase. | `result`: `cancelled`, `restored`, `error`. `trigger`. |
 
