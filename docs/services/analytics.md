@@ -99,6 +99,12 @@ The paywall in both apps is RevenueCat's own screen. Plan taps and the purchase 
 | `scroll_budget_extended` | User | "Ten more posts" is tapped, once per sitting. | `surface`. |
 | `scroll_budget_done` | User | "Done for now" is tapped and the webview closes. | `surface`. |
 
+### Webview filters
+
+| Event | App | When | Properties |
+|-------|-----|------|------------|
+| `filter_leak_suspected` | User | A filter that should hide a surface let it through, as the leak probe sees it: once per platform and surface per app launch. A heuristic, read in aggregate (a spike the day after a site redesign), never one by one. Until 2026-10-05 this went to Sentry as a warning. | `platform`, `surface`, `signal`, `within_article`. |
+
 ### Automatic
 
 | Event | App | When |
