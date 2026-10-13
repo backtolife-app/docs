@@ -30,7 +30,7 @@ Tras crear el issue, añádelo al proyecto **BackToLife** desde la barra lateral
 
 Solo mueve un issue a **Ready** cuando:
 - La descripción desde el punto de vista del usuario esté completa
-- Todas las etiquetas (Plataforma, SO, Prioridad, Sizing, Tipo de Tarea) estén asignadas
+- Las etiquetas (Plataforma, SO, Tipo de Tarea) y los campos del tablero (Prioridad, Tamaño) estén asignados
 - Esté realmente priorizado para el ciclo de trabajo actual o próximo
 
 No dejes issues a medio definir en Ready — muévelos de vuelta a Backlog si falta algo.
@@ -41,7 +41,7 @@ No dejes issues a medio definir en Ready — muévelos de vuelta a Backlog si fa
 
 ### Recoger una tarea
 
-1. Busca en la columna **Ready** tu próxima tarea — elige por etiqueta de prioridad si no estás seguro
+1. Busca en la columna **Ready** tu próxima tarea — elige por el campo Prioridad si no estás seguro
 2. Asígnate el issue
 3. Arrastra la tarjeta a **In Progress**
 4. Crea la rama usando el botón **"Create a branch"** en la página del issue (ver [Contribución](contributing.es.md#nomenclatura-de-ramas))

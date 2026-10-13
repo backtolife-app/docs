@@ -30,7 +30,7 @@ After creating the issue, add it to the **BackToLife** project from the issue's 
 
 Only move an issue to **Ready** when:
 - The user-POV description is complete
-- Labels (Platform, OS, Priority, Sizing, Task Type) are all set
+- Labels (Platform, OS, Task Type) and the board fields (Priority, Size) are all set
 - It is actually prioritised for the current or upcoming work cycle
 
 Do not leave half-defined issues in Ready — move them back to Backlog if something is missing.
@@ -41,7 +41,7 @@ Do not leave half-defined issues in Ready — move them back to Backlog if somet
 
 ### Picking up a task
 
-1. Look in the **Ready** column for your next task — pick by priority label if unsure
+1. Look in the **Ready** column for your next task — pick by the Priority field if unsure
 2. Assign yourself to the issue
 3. Drag the card to **In Progress**
 4. Create the branch using the **"Create a branch"** button on the issue page (see [Contributing](contributing.md#branch-naming))

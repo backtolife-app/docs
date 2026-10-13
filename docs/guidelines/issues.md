@@ -69,9 +69,9 @@ When opening an issue on GitHub, select one **Type**:
 
 ---
 
-### Rule 4 — Label Requirements
+### Rule 4 — Labels and board fields
 
-Labels are selected in the **GitHub sidebar** (right-hand side of the issue), not written in the body. Every issue must have **one label from each of the five groups below** — including the **Size** (`S`/`M`/`L`/`XL`) — before being moved out of Triage.
+Everything below is picked in the **GitHub sidebar** (right-hand side of the issue), not written in the body. Three groups are **labels** (Platform, OS, Task Type) and two are **fields of the BackToLife board** (Priority, Size), which exist only once the issue is on the board. Every issue must have all five before being moved out of Triage. Until 2026-10-13 priority and size were labels too; those eight labels were migrated into the fields and deleted.
 
 #### Platform — which app does this affect?
 
@@ -91,23 +91,26 @@ Labels are selected in the **GitHub sidebar** (right-hand side of the issue), no
 
 #### Priority
 
-| Label      | Meaning                                  |
+A **board field**, not a label: set it on the BackToLife board (project 6), in the issue's sidebar under the project.
+
+| Value      | Meaning                                  |
 | ---------- | ---------------------------------------- |
 | `critical` | Site is down or a core feature is broken |
 | `high`     | Important for the next release           |
 | `medium`   | Standard task                            |
 | `low`      | Nice-to-have / backlog                   |
 
-#### Sizing (Effort Estimate)
+#### Size (Effort Estimate)
 
-How long the task is expected to take. **Always size against the Full-time column.** The Part-time column is the equivalent wall-clock time for someone working ~2 days a week and is shown for scheduling reference only — never estimate directly from it.
+A **board field** too, next to Priority. The effort the task is expected to take for the person doing it, not the calendar time until it ships.
 
-| Label | Full-time (reference) | Part-time (~2 days/week) |
-| ----- | --------------------- | ------------------------ |
-| `S`   | 1 calendar day        | 3 calendar days          |
-| `M`   | 3 calendar days       | 7 calendar days          |
-| `L`   | 7 calendar days       | 14 calendar days         |
-| `XL`  | 14 calendar days      | 28 calendar days         |
+| Value | Effort                   |
+| ----- | ------------------------ |
+| `XS`  | 1 to 2 hours             |
+| `S`   | Half a day to a day      |
+| `M`   | 1 to 3 days              |
+| `L`   | About a week             |
+| `XL`  | More than two weeks      |
 
 #### Task Type
 
@@ -147,7 +150,8 @@ Como padre, quiero ver cuánto tiempo de pantalla usó mi hijo hoy directamente 
 **Sidebar** (not the body)
 
 - **Type:** Feature — **Projects:** BackToLife
-- **Labels:** `parent app` · `both iOS and android` · `medium` · `M` · `feature`
+- **Labels:** `parent app` · `both iOS and android` · `feature`
+- **Board fields:** Status `Backlog` · Priority `medium` · Size `M`
 
 ---
 

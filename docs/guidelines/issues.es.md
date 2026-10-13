@@ -69,9 +69,9 @@ Al abrir un issue en GitHub, selecciona un **Tipo**:
 
 ---
 
-### Regla 4 — Requisitos de Etiquetas
+### Regla 4 — Etiquetas y campos del tablero
 
-Las etiquetas se seleccionan en la **barra lateral de GitHub** (lado derecho del issue), no se escriben en el cuerpo. Cada issue debe tener **una etiqueta de cada uno de los cinco grupos** — incluido el **Tamaño** (`S`/`M`/`L`/`XL`) — antes de salir de Triaje.
+Todo lo de abajo se elige en la **barra lateral de GitHub** (lado derecho del issue), no se escribe en el cuerpo. Tres grupos son **etiquetas** (Plataforma, SO, Tipo de tarea) y dos son **campos del tablero BackToLife** (Prioridad, Tamaño), que solo existen cuando el issue está en el tablero. Cada issue debe tener los cinco antes de salir de Triaje. Hasta el 13-10-2026 prioridad y tamaño también eran etiquetas; esas ocho etiquetas se migraron a los campos y se borraron.
 
 #### Plataforma — ¿qué app afecta?
 
@@ -91,23 +91,26 @@ Las etiquetas se seleccionan en la **barra lateral de GitHub** (lado derecho del
 
 #### Prioridad
 
-| Etiqueta   | Significado                                          |
+Un **campo del tablero**, no una etiqueta: se pone en el tablero BackToLife (proyecto 6), en la barra lateral del issue bajo el proyecto.
+
+| Valor      | Significado                                          |
 | ---------- | ---------------------------------------------------- |
 | `critical` | El sitio está caído o una función principal está rota |
 | `high`     | Importante para el próximo release                   |
 | `medium`   | Tarea estándar                                       |
 | `low`      | Bueno tener / backlog                                |
 
-#### Sizing (Estimación de Esfuerzo)
+#### Tamaño (Estimación de Esfuerzo)
 
-Cuánto se espera que tome la tarea. **Estima siempre con la columna Tiempo completo.** La columna Medio tiempo es el tiempo de calendario equivalente para alguien que trabaja ~2 días por semana, mostrada solo como referencia de planificación — nunca estimes directamente con ella.
+También un **campo del tablero**, junto a Prioridad. El esfuerzo que se espera que lleve la tarea a quien la hace, no el tiempo de calendario hasta que sale.
 
-| Etiqueta | Tiempo completo (referencia) | Medio tiempo (~2 días/semana) |
-| -------- | ---------------------------- | ----------------------------- |
-| `S`      | 1 día de calendario          | 3 días de calendario          |
-| `M`      | 3 días de calendario         | 7 días de calendario          |
-| `L`      | 7 días de calendario         | 14 días de calendario         |
-| `XL`     | 14 días de calendario        | 28 días de calendario         |
+| Valor    | Esfuerzo                   |
+| -------- | -------------------------- |
+| `XS`     | 1 a 2 horas                |
+| `S`      | De medio día a un día      |
+| `M`      | De 1 a 3 días              |
+| `L`      | Una semana aproximadamente |
+| `XL`     | Más de dos semanas         |
 
 #### Tipo de Tarea
 
@@ -147,7 +150,8 @@ Como padre, quiero ver cuánto tiempo de pantalla usó mi hijo hoy directamente 
 **Barra lateral** (no el cuerpo)
 
 - **Type:** Feature — **Projects:** BackToLife
-- **Etiquetas:** `parent app` · `both iOS and android` · `medium` · `M` · `feature`
+- **Etiquetas:** `parent app` · `both iOS and android` · `feature`
+- **Campos del tablero:** Status `Backlog` · Priority `medium` · Size `M`
 
 ---
 
