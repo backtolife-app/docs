@@ -13,6 +13,7 @@ This page is the reference for every event. **Any change to an event ships with 
 | Session replay | **Off in both apps.** In the user app it stays off for good, because the users are minors. In the parent app it is a separate, later decision, and would need consent, masking, sampling and a retention period. |
 | `app` property | Every event carries `app: parent` or `app: user`, registered once at setup. |
 | No key, no events | The project key comes from the `POSTHOG_API_KEY` dart-define. A build without it sends nothing. |
+| Backend events | One event comes from the backend, because no app sees that moment: `referral_reward_granted` for the referrer's month (section Referral). Same name, same person (the user id), same `app` property. The backend's key is `POSTHOG_KEY` in its `.env`; without it nothing is sent. |
 
 The wrappers: [`lib/helpers/analytics.dart`](https://github.com/backtolife-app/user-app/blob/develop/lib/helpers/analytics.dart) in the user app and the same path in the parent app. Event names live there as constants, so a name typo is a compile error.
 
@@ -22,11 +23,11 @@ Screen views are automatic: PostHog's route observer sits on each app's root nav
 
 **Parent app**
 
-`/LoadingScreen` `/OnboardingFlowScreen` `/LoginScreen` `/SignUpScreen` `/SignUpEmailVerifyScreen` `/EmailVerifyScreen` `/SuccessfulScreen` `/AcquisitionSourceScreen` `/ForgotPasswordScreen` `/PasswordResetScreen` `/PasswordResetSuccessfulScreen` `/NavigationScreen` `/SettingsScreen` `/LinkChildScreen` `/EnterCodeScreen` `/SetupWizardScreen` `/SetParentPasscodeScreen` `/ChildDetailScreen` `/EditProfileScreen` `/ChildErrorScreen` `/ChangePasswordScreen` `/NotificationsSettingsScreen` `/ParentPinScreen` `/ReportABugScreen` `/TalkToTeamScreen` `/AboutScreen` `/HowAppWorksScreen` `/HowWorksFiltersScreen` `/HowWorksScheduleScreen` `/HowWorksDailyLimitsScreen` `/HowWorksAlwaysOnScreen` `/HowWorksAlldayScreen` `/HowWorksBedtimeScreen` `/RuleStrictScheduleScreen` `/RuleAlldayFiltersScreen` `/AppBlockingSetupScreen` `/UnblockRequestsScreen`
+`/LoadingScreen` `/OnboardingFlowScreen` `/LoginScreen` `/SignUpScreen` `/SignUpEmailVerifyScreen` `/EmailVerifyScreen` `/SuccessfulScreen` `/AcquisitionSourceScreen` `/ReferralWelcomeScreen` `/ForgotPasswordScreen` `/PasswordResetScreen` `/PasswordResetSuccessfulScreen` `/NavigationScreen` `/SettingsScreen` `/InviteFriendsScreen` `/LinkChildScreen` `/EnterCodeScreen` `/SetupWizardScreen` `/SetParentPasscodeScreen` `/ChildDetailScreen` `/EditProfileScreen` `/ChildErrorScreen` `/ChangePasswordScreen` `/NotificationsSettingsScreen` `/ParentPinScreen` `/ReportABugScreen` `/TalkToTeamScreen` `/AboutScreen` `/HowAppWorksScreen` `/HowWorksFiltersScreen` `/HowWorksScheduleScreen` `/HowWorksDailyLimitsScreen` `/HowWorksAlwaysOnScreen` `/HowWorksAlldayScreen` `/HowWorksBedtimeScreen` `/RuleStrictScheduleScreen` `/RuleAlldayFiltersScreen` `/AppBlockingSetupScreen` `/UnblockRequestsScreen`
 
 **User app**
 
-`/LoadingScreen` `/NavigationScreen` `/LoginScreen` `/SignUpScreen` `/SignUpEmailVerifyScreen` `/EmailVerifyScreen` `/SuccessfulScreen` `/ForgotPasswordScreen` `/PasswordResetScreen` `/EditProfileScreen` `/ChangePasswordScreen` `/PermissionsScreen` `/InstagramWebViewScreen` `/YoutubeWebViewScreen` `/TwitterWebViewScreen` `/TikTokWebViewScreen` `/StrickScheduleScreen` `/DailyLimitScreen` `/DesiredUseScreen` `/AlwaysOnScreen` `/BlockScreen` `/LinkToParentScreen` `/LinkedParentsScreen` `/FamilyBlockPasscodeScreen` `/SetupGuideScreen` `/AndroidPermissionWizard` `/FiltersFeaturesScreen` `/HowAppWorksScreen` `/DailyLimitsHelpScreen` `/AlwaysOnHelpScreen` `/BedtimeHelpScreen` `/AlwaysHiddenHelpScreen` `/DigitalCleaningTipsScreen` `/HomeWidgetsScreen` `/InviteFriendsScreen` `/AnalyticsScreen` `/LearnMoreScreen` `/WhatsNewScreen` `/FaqScreen` `/AboutScreen` `/ReportABugScreen` `/TalkToTeamScreen`
+`/LoadingScreen` `/NavigationScreen` `/LoginScreen` `/SignUpScreen` `/SignUpEmailVerifyScreen` `/EmailVerifyScreen` `/SuccessfulScreen` `/ReferralWelcomeScreen` `/ForgotPasswordScreen` `/PasswordResetScreen` `/EditProfileScreen` `/ChangePasswordScreen` `/PermissionsScreen` `/InstagramWebViewScreen` `/YoutubeWebViewScreen` `/TwitterWebViewScreen` `/TikTokWebViewScreen` `/StrickScheduleScreen` `/DailyLimitScreen` `/DesiredUseScreen` `/AlwaysOnScreen` `/BlockScreen` `/LinkToParentScreen` `/LinkedParentsScreen` `/FamilyBlockPasscodeScreen` `/SetupGuideScreen` `/AndroidPermissionWizard` `/FiltersFeaturesScreen` `/HowAppWorksScreen` `/DailyLimitsHelpScreen` `/AlwaysOnHelpScreen` `/BedtimeHelpScreen` `/AlwaysHiddenHelpScreen` `/DigitalCleaningTipsScreen` `/HomeWidgetsScreen` `/InviteFriendsScreen` `/AnalyticsScreen` `/LearnMoreScreen` `/WhatsNewScreen` `/FaqScreen` `/AboutScreen` `/ReportABugScreen` `/TalkToTeamScreen`
 
 ## Events sent by the apps
 
@@ -83,6 +84,17 @@ The paywall in both apps is RevenueCat's own screen. Plan taps and the purchase 
 | Event | App | When | Properties |
 |-------|-----|------|------------|
 | `support_call_tapped` | Parent, User | "Book a call" is tapped on the Talk to the team screen, before the booking page opens. | `source: support_row`. |
+
+### Referral
+
+The invite funnel, from opening the screen to the two free months. The first three steps come from the apps: the inviter's for the screen and the share, the friend's for the attribution and their own month. The referrer's month is granted by the backend when the friend saves a first filter, so the backend sends that one (see Rules). Typing the code at signup is the only attribution method today.
+
+| Event | App | When | Properties |
+|-------|-----|------|------------|
+| `referral_entry_viewed` | Parent, User | The Invite friends screen opens. | `source`: where from. Parent: `settings`. User: `profile`, `prompt` (the invite dialog after the first filter), `push` (the free-month notification). `other` when unknown. |
+| `referral_share_tapped` | Parent, User | Share or Copy code is tapped on that screen. | `method`: `share_sheet`, `copy_code`. |
+| `referral_attributed` | Parent, User | The friend's signup response says their invite code counted. Once per account, from the friend's app. | `method: code`. |
+| `referral_reward_granted` | Parent, User, Backend | A free month is granted. The friend's: at the same moment as `referral_attributed`, since the month is granted inside the signup call. The referrer's: from the backend when the friend saves a first filter, keyed by the referrer's user id and with `app` from the referral. | `side`: `invitee`, `referrer`. |
 
 ### Scroll sessions
 
