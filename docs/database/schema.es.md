@@ -31,6 +31,7 @@ La única tabla de usuarios para todos los roles. Admin, User estándar (hijo) y
 | device_id | string nullable | |
 | language | string nullable | `en` \| `es` \| … |
 | timezone | string(64) nullable | *(Añadido 2026-04-29)* Nombre IANA. |
+| first_filter_at | timestamp nullable | *(Renombrada desde `first_blocked_at` el 29-06-2026)* Sellado una vez por `POST /user/first-filter` la primera vez que un filtro elegido por la persona está activo al abrir la app; paga el referido, abre el aviso de invitar y alimenta la página Activation. Inflado desde el 23-09-2026 (app del hijo 1.6.1) hasta la build con el arreglo del 14-10-2026: esa app contaba los filtros siempre activos, así que casi toda primera apertura lo sellaba. |
 | provider_id | string nullable (indexado) | Proveedor social (`google`, `apple`). |
 | provider_user_id | string nullable (indexado) | Id externo del proveedor. |
 | reset_code | string nullable | OTP de restablecimiento. |
@@ -272,6 +273,8 @@ Flags de filtro de contenido por usuario. Una fila por usuario. Todas las column
 | TikTok *(2026-06-09)* | `tiktok_for_you`, `tiktok_dm_only`, `tiktok_search_only`, `tiktok_notifications` |
 
 Más `id`, `user_id` (FK, único), `timezone` (string(64) nullable), `timestamps`.
+
+Cuatro filtros están siempre activos en la app del hijo guarde lo que guarde esta tabla: la pestaña Reels de Instagram (solo en la app, sin columna; `instagram_reels` es el interruptor del feed), `youtube_shorts` y `tiktok_for_you` desde el 17-09-2026, `twitter_for_you` desde el 14-10-2026. Las columnas siguen para la app de padres y los editores; la app del hijo nunca las lee para aplicar nada.
 
 ### `strict_streak_days` *(2026-04-29)*
 

@@ -31,6 +31,7 @@ The single user table for every role. Admin, standard User (child), and Parent a
 | device_id | string nullable | Originally used for device pinning. |
 | language | string nullable | `en` \| `es` \| … |
 | timezone | string(64) nullable | *(Added 2026-04-29)* IANA name. |
+| first_filter_at | timestamp nullable | *(Renamed from `first_blocked_at` on 2026-06-29)* Stamped once by `POST /user/first-filter` the first time a filter the person chose is on at app open; pays the referral, gates the invite prompt and feeds the Activation page. Inflated from 2026-09-23 (user app 1.6.1) until the build with the 2026-10-14 fix: that app counted the always-on filters, so nearly every first open stamped it. |
 | provider_id | string nullable (indexed) | Social-auth provider (`google`, `apple`). |
 | provider_user_id | string nullable (indexed) | External user id from the provider. |
 | reset_code | string nullable | OTP for password reset. |
@@ -272,6 +273,8 @@ Per-user content-filter flags. One row per user. All boolean columns `NOT NULL D
 | TikTok *(2026-06-09)* | `tiktok_for_you`, `tiktok_dm_only`, `tiktok_search_only`, `tiktok_notifications` |
 
 Plus `id`, `user_id` (FK, unique), `timezone` (string(64) nullable), `timestamps`.
+
+Four filters are always on in the user app whatever is stored here: Instagram's Reels tab (app-only, no column; `instagram_reels` is the feed switch), `youtube_shorts` and `tiktok_for_you` since 2026-09-17, `twitter_for_you` since 2026-10-14. The columns stay for the parent app and the editors; the user app never reads them for enforcement.
 
 ### `strict_streak_days` *(2026-04-29)*
 
