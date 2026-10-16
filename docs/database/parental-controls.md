@@ -9,7 +9,9 @@ family_links ─── 1:1 ───▶ parental_controls
      │
      └─── 1:N ──▶ sleep_schedules        (device-wide bedtime lock)
 
-users ─── 1:1 ──▶ strict_shedules        (social-media feature filter)
+users ─── 1:1 ──▶ strict_schedule_filters (content filters + always_on)
+  │
+  └─── 1:N ──▶ strict_schedule_blocks  (Focus / All-Day windows)
 ```
 
 | Table | Scope | Shape | Who writes |
@@ -17,9 +19,10 @@ users ─── 1:1 ──▶ strict_shedules        (social-media feature filte
 | `family_links` | Links one parent ↔ one child. Many-to-many overall. | One row per link. | Parent + child (linking flow). |
 | `parental_controls` | Per-child parent settings (lock, screen-time caps, allow-list). | One row per link. | Parent app. |
 | `sleep_schedules` | **Device-wide** bedtime lock. | Up to **two** rows per link (`bucket = weeknight | weekend`). | Parent app. |
-| `strict_shedules` | **Social-media-only** feature filter (YouTube/Instagram toggles during a window). | One row per child. | Child app (self-configured) or parent app (override). |
+| `strict_schedule_filters` | **Social-media-only** content filters: 30 flags across YouTube, Instagram, X and TikTok, plus the `always_on` list. | One row per child. | Child app (own choices) or parent app (overlay in `parent_strict_schedule_filters`). |
+| `strict_schedule_blocks` | **When** the filters lock: Focus windows and All-Day blocks. | One row per `(user_id, kind)`. | Child app or parent app (overlay in `parent_strict_schedule_blocks`). |
 
-The easy mental model: **`strict_shedules` is about what's visible inside Instagram and YouTube. `sleep_schedules` is about whether the child's phone works at all.** They do not share data or enforcement code.
+The easy mental model: **the strict-schedule tables are about what's visible inside the social apps. `sleep_schedules` is about whether the child's phone works at all.** They do not share data or enforcement code.
 
 ---
 
@@ -60,7 +63,7 @@ The child app is expected to mirror this logic when it enforces the limit. Backe
 
 ## Sleep schedules
 
-Unlike `strict_shedules` (which is a single row per child), `sleep_schedules` is a **multi-row** table with up to two rows per child.
+Unlike `strict_schedule_filters` (a single row per child), `sleep_schedules` is a **multi-row** table with up to two rows per child.
 
 ```
 sleep_schedules
@@ -121,23 +124,23 @@ Written via `PUT /parent/children/{id}/controls` with an `always_allowed_apps` k
 
 ---
 
-## Strict schedules — the other "schedule" table
+## Strict schedules — the other "schedule" tables
 
-`strict_shedules` predates the parental-control work and has a different purpose:
+The content filters and the Focus / All-Day windows live in two tables that replaced the legacy single-row `strict_shedules` (dropped on 2026-09-04):
 
-- **One row per child**, upserted on `user_id`.
-- Holds **seven boolean toggles** for YouTube Shorts / Comments and Instagram Reels / Stories / Explore / etc.
-- Also has `start_time`, `end_time`, `days` — but these define **when the toggles take effect**, not a device-wide lock.
+- **`strict_schedule_filters`**: one row per child, upserted on `user_id`. One boolean per content filter, 30 flags across YouTube, Instagram, X and TikTok, listed on the [schema page](schema.md), plus the `always_on` JSON list of the flags applied 24/7.
+- **`strict_schedule_blocks`**: one row per `(user_id, kind)`. The Focus windows (`weekday`, `weekend`) with `start_time`, `end_time`, `days`, which define **when the filters lock**, not a device-wide lock; the All-Day blocks (`allday_school`, `allday_weekend`) carry their own `filters` list.
+- A parent's choices sit in `parent_strict_schedule_filters` and `parent_strict_schedule_blocks`, merged over the child's own rows on read.
 
-When both tables are configured for a child:
+When sleep windows and strict schedules are both configured for a child:
 
-1. **Outside** any sleep window → social filters from `strict_shedules` apply during its own `start_time`/`end_time`; other apps unrestricted.
-2. **Inside** a sleep window → everything locked except `always_allowed_apps`, regardless of `strict_shedules`.
+1. **Outside** any sleep window → the content filters apply inside a Focus window, all day under an All-Day block, and always for the `always_on` list; other apps unrestricted.
+2. **Inside** a sleep window → everything locked except `always_allowed_apps`, whatever the filters say.
 
-The parent app surfaces both as separate rows on the Rules screen:
+The parent app surfaces them as separate rows on the Rules screen:
 
-- **Sleep time** → writes to `sleep_schedules`.
-- **Social media** → writes to `strict_shedules` (via the existing `/parent/children/{id}/schedule` endpoint).
+- **Sleep schedule** → writes to `sleep_schedules`.
+- **Focus schedule, All-Day Schedule and Always-on filters** → write to the strict-schedule tables through `/parent/children/{id}/schedule`.
 
 ---
 

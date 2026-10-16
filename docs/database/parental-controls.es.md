@@ -9,7 +9,9 @@ family_links ─── 1:1 ───▶ parental_controls
      │
      └─── 1:N ──▶ sleep_schedules        (bloqueo a nivel de dispositivo)
 
-users ─── 1:1 ──▶ strict_shedules        (filtro de redes sociales)
+users ─── 1:1 ──▶ strict_schedule_filters (filtros de contenido + always_on)
+  │
+  └─── 1:N ──▶ strict_schedule_blocks  (ventanas de Focus / Todo el día)
 ```
 
 | Tabla | Alcance | Forma | Quién escribe |
@@ -17,9 +19,10 @@ users ─── 1:1 ──▶ strict_shedules        (filtro de redes sociales)
 | `family_links` | Enlaza un padre ↔ un hijo. Many-to-many en global. | Una fila por enlace. | Padre + hijo (flujo de vinculación). |
 | `parental_controls` | Ajustes por hijo (bloqueo, topes de pantalla, lista permitida). | Una fila por enlace. | App padre. |
 | `sleep_schedules` | Bloqueo **a nivel dispositivo** durante horas de sueño. | Hasta **dos** filas por enlace (`bucket = weeknight | weekend`). | App padre. |
-| `strict_shedules` | Filtro de funcionalidades de **redes sociales** (toggles de YouTube/Instagram durante una ventana). | Una fila por hijo. | App hijo (auto-configurada) o app padre (override). |
+| `strict_schedule_filters` | Filtros de contenido **solo de redes sociales**: 30 flags entre YouTube, Instagram, X y TikTok, más la lista `always_on`. | Una fila por hijo. | App hijo (sus propias decisiones) o app padre (capa en `parent_strict_schedule_filters`). |
+| `strict_schedule_blocks` | **Cuándo** se bloquean los filtros: ventanas de Focus y bloques de todo el día. | Una fila por `(user_id, kind)`. | App hijo o app padre (capa en `parent_strict_schedule_blocks`). |
 
-Modelo mental simple: **`strict_shedules` controla lo que se ve dentro de Instagram y YouTube. `sleep_schedules` controla si el móvil del hijo funciona o no.** No comparten datos ni código de aplicación.
+Modelo mental simple: **las tablas de strict schedule controlan lo que se ve dentro de las apps sociales. `sleep_schedules` controla si el móvil del hijo funciona o no.** No comparten datos ni código de aplicación.
 
 ---
 
@@ -60,7 +63,7 @@ Se espera que la app hijo replique esa lógica al aplicar el límite. El backend
 
 ## Horarios de sueño
 
-A diferencia de `strict_shedules` (una fila por hijo), `sleep_schedules` es una tabla **multi-fila** con hasta dos filas por hijo.
+A diferencia de `strict_schedule_filters` (una fila por hijo), `sleep_schedules` es una tabla **multi-fila** con hasta dos filas por hijo.
 
 ```
 sleep_schedules
@@ -121,23 +124,23 @@ Se escribe vía `PUT /parent/children/{id}/controls` con la clave `always_allowe
 
 ---
 
-## Strict schedules — la otra tabla de "schedule"
+## Strict schedules — las otras tablas de "schedule"
 
-`strict_shedules` es anterior al trabajo parental y tiene otro propósito:
+Los filtros de contenido y las ventanas de Focus / Todo el día viven en dos tablas que sustituyeron a la antigua `strict_shedules` de una fila (eliminada el 04-09-2026):
 
-- **Una fila por hijo**, upserted sobre `user_id`.
-- Guarda **siete toggles booleanos** para YouTube Shorts / Comentarios e Instagram Reels / Stories / Explore / etc.
-- También tiene `start_time`, `end_time`, `days` — pero definen **cuándo aplican los toggles**, no un bloqueo global.
+- **`strict_schedule_filters`**: una fila por hijo, upserted sobre `user_id`. Un boolean por filtro de contenido, 30 flags entre YouTube, Instagram, X y TikTok, listados en la [página del esquema](schema.md), más la lista JSON `always_on` con los flags aplicados 24/7.
+- **`strict_schedule_blocks`**: una fila por `(user_id, kind)`. Las ventanas de Focus (`weekday`, `weekend`) con `start_time`, `end_time`, `days`, que definen **cuándo se bloquean los filtros**, no un bloqueo global; los bloques de todo el día (`allday_school`, `allday_weekend`) llevan su propia lista `filters`.
+- Las decisiones del padre o madre están en `parent_strict_schedule_filters` y `parent_strict_schedule_blocks`, fusionadas sobre las filas propias del hijo al leer.
 
-Cuando ambas tablas están configuradas para un hijo:
+Cuando un hijo tiene ventanas de sueño y strict schedules configurados:
 
-1. **Fuera** de cualquier ventana de sueño → aplica el filtro de `strict_shedules` en su propia `start_time`/`end_time`; el resto de apps sin restricción.
-2. **Dentro** de una ventana de sueño → todo bloqueado salvo `always_allowed_apps`, independientemente de `strict_shedules`.
+1. **Fuera** de cualquier ventana de sueño → los filtros aplican dentro de una ventana de Focus, todo el día bajo un bloque de todo el día, y siempre para la lista `always_on`; el resto de apps sin restricción.
+2. **Dentro** de una ventana de sueño → todo bloqueado salvo `always_allowed_apps`, digan lo que digan los filtros.
 
-La app padre expone ambos como filas separadas en la pantalla de Reglas:
+La app padre los expone como filas separadas en la pantalla de Reglas:
 
-- **Tiempo de sueño** → escribe en `sleep_schedules`.
-- **Redes sociales** → escribe en `strict_shedules` (endpoint existente `/parent/children/{id}/schedule`).
+- **Horario de sueño** → escribe en `sleep_schedules`.
+- **Horario de concentración, Horario de todo el día y Filtros siempre activos** → escriben en las tablas de strict schedule a través de `/parent/children/{id}/schedule`.
 
 ---
 
