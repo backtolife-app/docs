@@ -267,7 +267,7 @@ Flags de filtro de contenido por usuario. Una fila por usuario. Todas las column
 
 | Grupo de columnas | Columnas |
 |---|---|
-| YouTube | `youtube_shorts`, `youtube_comments`, `youtube_subscriptions` *(2026-04-30)*, `youtube_home` *(2026-04-30)* |
+| YouTube | `youtube_shorts`, `youtube_comments`, `youtube_subscriptions` *(2026-04-30)*, `youtube_home` *(2026-04-30)*, `youtube_suggested` *(2026-10-16)* |
 | Instagram | `instagram_reels`, `instagram_explore`, `instagram_hide_explore` *(2026-05-11)*, `instagram_hide_suggestions` *(2026-05-11)*, `instagram_likeComments`, `instagram_story`, `instagramDmOnly` |
 | Twitter / X *(2026-05-11)* | `twitter_for_you`, `twitter_following`, `twitter_grok`, `twitter_notifications`, `twitter_messages` |
 | TikTok *(2026-06-09)* | `tiktok_for_you`, `tiktok_dm_only`, `tiktok_search_only`, `tiktok_notifications` |
