@@ -108,4 +108,5 @@ nav:
   - Global Guidelines:
       - Issue & PR Format: guidelines/issues.md
       - Project Board: guidelines/project-board.md
+      - New Filter Checklist: guidelines/new-filter.md
       - Contributing: guidelines/contributing.md
