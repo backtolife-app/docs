@@ -271,6 +271,7 @@ Flags de filtro de contenido por usuario. Una fila por usuario. Todas las column
 | Instagram | `instagram_reels`, `instagram_explore`, `instagram_hide_explore` *(2026-05-11)*, `instagram_hide_suggestions` *(2026-05-11)*, `instagram_likeComments`, `instagram_story`, `instagramDmOnly` |
 | Twitter / X *(2026-05-11)* | `twitter_for_you`, `twitter_following`, `twitter_grok`, `twitter_notifications`, `twitter_messages` |
 | TikTok *(2026-06-09)* | `tiktok_for_you`, `tiktok_dm_only`, `tiktok_search_only`, `tiktok_notifications` |
+| Facebook *(22-10-2026)* | `facebook_watch`, `facebook_reels_feed`, `facebook_stories`, `facebook_suggestions`, `facebook_ads`, `facebook_marketplace`, `facebook_notifications` (también en `parent_strict_schedule_filters`; Ocultar Reels no tiene columna, está activo para todos) |
 
 Más `id`, `user_id` (FK, único), `timezone` (string(64) nullable), `timestamps`.
 
