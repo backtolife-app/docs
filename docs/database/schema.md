@@ -267,15 +267,15 @@ Per-user content-filter flags. One row per user. All boolean columns `NOT NULL D
 
 | Column group | Columns |
 |---|---|
-| YouTube | `youtube_shorts`, `youtube_comments`, `youtube_subscriptions` *(2026-04-30)*, `youtube_home` *(2026-04-30)*, `youtube_suggested` *(2026-10-16)* |
-| Instagram | `instagram_reels`, `instagram_explore`, `instagram_hide_explore` *(2026-05-11)*, `instagram_hide_suggestions` *(2026-05-11)*, `instagram_likeComments`, `instagram_story`, `instagramDmOnly` |
-| Twitter / X *(2026-05-11)* | `twitter_for_you`, `twitter_following`, `twitter_grok`, `twitter_notifications`, `twitter_messages` |
-| TikTok *(2026-06-09)* | `tiktok_for_you`, `tiktok_dm_only`, `tiktok_search_only`, `tiktok_notifications` |
+| YouTube | `youtube_shorts`, `youtube_comments`, `youtube_subscriptions` *(2026-04-30)*, `youtube_home` *(2026-04-30)*, `youtube_ads` *(2026-09-22)*, `youtube_suggested` *(2026-10-16)* |
+| Instagram | `instagram_reels`, `instagram_explore`, `instagram_hide_explore` *(2026-05-11)*, `instagram_hide_suggestions` *(2026-05-11)*, `instagram_likeComments`, `instagram_story`, `instagramDmOnly`, `instagram_autoplay` *(2026-08-13)*, `instagram_message_requests` *(2026-08-13)*, `instagram_notifications` *(2026-08-14)*, `instagram_ads` *(2026-09-22)*, `instagram_ai` *(2026-10-01)* |
+| Twitter / X *(2026-05-11)* | `twitter_for_you`, `twitter_following`, `twitter_grok`, `twitter_notifications`, `twitter_messages`, `twitter_autoplay` *(2026-08-13)* |
+| TikTok *(2026-06-09)* | `tiktok_for_you`, `tiktok_dm_only`, `tiktok_search_only`, `tiktok_notifications`, `tiktok_autoplay` *(2026-08-13)*, `tiktok_ai` *(2026-10-01)* |
 | Facebook *(2026-10-22)* | `facebook_watch`, `facebook_reels_feed`, `facebook_stories`, `facebook_suggestions`, `facebook_ads`, `facebook_marketplace`, `facebook_notifications` (also on `parent_strict_schedule_filters`; Hide Reels has no column, it is on for everyone) |
 
 Plus `id`, `user_id` (FK, unique), `timezone` (string(64) nullable), `timestamps`.
 
-Four filters are always on in the user app whatever is stored here: Instagram's Reels tab (app-only, no column; `instagram_reels` is the feed switch), `youtube_shorts` and `tiktok_for_you` since 2026-09-17, `twitter_for_you` since 2026-10-14. The columns stay for the parent app and the editors; the user app never reads them for enforcement.
+Five filters are always on in the user app whatever is stored here: Instagram's Reels tab (app-only, no column; `instagram_reels` is the feed switch), `youtube_shorts` and `tiktok_for_you` since 2026-09-17, `twitter_for_you` since 2026-10-14, Facebook's Reels (app-only, no column; `facebook_reels_feed` is the feed switch) since 2026-10-20. The columns stay for the parent app and the editors; the user app never reads them for enforcement.
 
 ### `strict_streak_days` *(2026-04-29)*
 
@@ -350,7 +350,7 @@ Identical shape to [`strict_schedule_blocks`](#strict_schedule_blocks-2026-04-28
 
 ### `parent_strict_schedule_filters` *(2026-05-28)*
 
-Identical shape to [`strict_schedule_filters`](#strict_schedule_filters-2026-04-28), including the YouTube/Instagram/Twitter columns at creation and the `tiktok_*` columns added 2026-06-09.
+Identical shape to [`strict_schedule_filters`](#strict_schedule_filters-2026-04-28), including the YouTube/Instagram/Twitter columns at creation and every column added since (`tiktok_*` on 2026-06-09, autoplay and message requests on 2026-08-13, notifications on 2026-08-14, ads on 2026-09-22, AI on 2026-10-01, `youtube_suggested` on 2026-10-16, `facebook_*` on 2026-10-22): each filter migration adds its column to both tables.
 
 ---
 
