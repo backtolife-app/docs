@@ -269,9 +269,9 @@ Flags de filtro de contenido por usuario. Una fila por usuario. Todas las column
 |---|---|
 | YouTube | `youtube_shorts`, `youtube_comments`, `youtube_subscriptions` *(2026-04-30)*, `youtube_home` *(2026-04-30)*, `youtube_ads` *(2026-09-22)*, `youtube_suggested` *(2026-10-16)* |
 | Instagram | `instagram_reels`, `instagram_explore`, `instagram_hide_explore` *(2026-05-11)*, `instagram_hide_suggestions` *(2026-05-11)*, `instagram_likeComments`, `instagram_story`, `instagramDmOnly`, `instagram_autoplay` *(2026-08-13)*, `instagram_message_requests` *(2026-08-13)*, `instagram_notifications` *(2026-08-14)*, `instagram_ads` *(2026-09-22)*, `instagram_ai` *(2026-10-01)* |
-| Twitter / X *(2026-05-11)* | `twitter_for_you`, `twitter_following`, `twitter_grok`, `twitter_notifications`, `twitter_messages`, `twitter_autoplay` *(2026-08-13)* |
+| Twitter / X *(2026-05-11)* | `twitter_for_you`, `twitter_following`, `twitter_grok`, `twitter_notifications`, `twitter_messages`, `twitter_autoplay` *(2026-08-13)*, `twitter_dm_only` *(23-10-2026)* |
 | TikTok *(2026-06-09)* | `tiktok_for_you`, `tiktok_dm_only`, `tiktok_search_only`, `tiktok_notifications`, `tiktok_autoplay` *(2026-08-13)*, `tiktok_ai` *(2026-10-01)* |
-| Facebook *(22-10-2026)* | `facebook_watch`, `facebook_reels_feed`, `facebook_stories`, `facebook_suggestions`, `facebook_ads`, `facebook_marketplace`, `facebook_notifications` (también en `parent_strict_schedule_filters`; Ocultar Reels no tiene columna, está activo para todos) |
+| Facebook *(22-10-2026)* | `facebook_watch`, `facebook_reels_feed`, `facebook_stories`, `facebook_suggestions`, `facebook_ads`, `facebook_marketplace`, `facebook_notifications`, `facebook_dm_only` *(23-10-2026)* (también en `parent_strict_schedule_filters`; Ocultar Reels no tiene columna, está activo para todos) |
 
 Más `id`, `user_id` (FK, único), `timezone` (string(64) nullable), `timestamps`.
 
@@ -350,7 +350,7 @@ Forma idéntica a [`strict_schedule_blocks`](#strict_schedule_blocks-2026-04-28)
 
 ### `parent_strict_schedule_filters` *(2026-05-28)*
 
-Forma idéntica a [`strict_schedule_filters`](#strict_schedule_filters-2026-04-28), incluyendo las columnas de YouTube/Instagram/Twitter en su creación y todas las añadidas después (`tiktok_*` el 09-06-2026, autoplay y solicitudes de mensaje el 13-08-2026, notificaciones el 14-08-2026, anuncios el 22-09-2026, IA el 01-10-2026, `youtube_suggested` el 16-10-2026, `facebook_*` el 22-10-2026): cada migración de filtro añade su columna a las dos tablas.
+Forma idéntica a [`strict_schedule_filters`](#strict_schedule_filters-2026-04-28), incluyendo las columnas de YouTube/Instagram/Twitter en su creación y todas las añadidas después (`tiktok_*` el 09-06-2026, autoplay y solicitudes de mensaje el 13-08-2026, notificaciones el 14-08-2026, anuncios el 22-09-2026, IA el 01-10-2026, `youtube_suggested` el 16-10-2026, `facebook_*` el 22-10-2026, las columnas de solo mensajes el 23-10-2026): cada migración de filtro añade su columna a las dos tablas.
 
 ---
 
