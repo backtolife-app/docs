@@ -164,6 +164,7 @@ Una fila por dispositivo registrado por usuario. Lleva la telemetría de baterí
 | battery_level | unsigned tinyint nullable | 0–100. |
 | battery_charging | boolean nullable | |
 | battery_updated_at | timestamp nullable | |
+| muted_at | timestamp nullable *(2026-10-26)* | Lo pone un padre con `PUT /parent/family/children/{child}/devices/{device}/mute`, para todos los padres del hijo: sin avisos sobre el dispositivo (salud del bloqueo, posible desinstalación, solicitudes de desbloqueo), sus solicitudes fuera de la bandeja del padre, fuera del Inicio de la app de padres y en gris en Bloqueo de apps. El dispositivo conserva sus reglas y nunca lo sabe. Null = no silenciado. |
 | timestamps | | |
 | **unique** | `(user_id, device_identifier)` | |
 

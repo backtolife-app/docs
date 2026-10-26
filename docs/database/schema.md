@@ -164,6 +164,7 @@ One row per registered device per user. Carries the battery telemetry (moved her
 | battery_level | unsigned tinyint nullable | 0–100. |
 | battery_charging | boolean nullable | |
 | battery_updated_at | timestamp nullable | |
+| muted_at | timestamp nullable *(2026-10-26)* | Set by a parent through `PUT /parent/family/children/{child}/devices/{device}/mute`, for every parent of the child: no pushes about the device (blocking health, possibly uninstalled, unblock requests), its requests out of the parent inbox, off the parent app's Home and grey in App Blocking. The device keeps its rules and never learns it. Null = not muted. |
 | timestamps | | |
 | **unique** | `(user_id, device_identifier)` | |
 
