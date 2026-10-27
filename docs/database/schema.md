@@ -44,6 +44,32 @@ The single user table for every role. Admin, standard User (child), and Parent a
 !!! note
     Battery fields (`battery_level`, `battery_charging`, `battery_updated_at`) were briefly on `users` but moved to [`devices`](#devices) on 2026-05-21. They no longer exist on `users`.
 
+### `deleted_accounts` *(2026-10-27)*
+
+One row per account deletion, written the moment the `users` row goes (the apps' `POST /delete-account` and `DELETE /delete/myProfile`, the admin panel's user delete), so deletions can be counted next to signups (the Retention & Churn page, the weekly recap). Rows are never deleted; 30 days after the deletion the `deleted-accounts:anonymise` command (daily, 03:55 UTC) nulls `email` and `email_hash` and stamps `anonymised_at`. The rest names no one and stays. Nothing here blocks a new signup with the same email.
+
+| Column | Type | Notes |
+|---|---|---|
+| id | bigint PK | |
+| user_id | unsigned bigint (indexed) | The old `users.id`. No FK: that row is gone. |
+| role | string(16) | `User`, `Parent` or `Admin`. |
+| email | text nullable | Encrypted at rest. Null after 30 days. |
+| email_hash | char(64) nullable (indexed) | sha256 of the lower-cased email: finds a deletion by email and matches a return. Null after 30 days. |
+| platform | string(16) nullable | Of the device seen last (`ios`, `android`). |
+| country | char(2) nullable | |
+| language | string(16) nullable | |
+| account_created_at | timestamp nullable | |
+| deleted_at | timestamp (indexed) | When the account went. Not a soft delete. |
+| account_age_days | unsigned int | |
+| was_premium | boolean | An active premium entitlement at deletion. |
+| activated | boolean | User: a filter was ever switched on. Parent: a child was linked. |
+| linked_children | unsigned smallint | Parents only. |
+| linked_parents | unsigned smallint | Users only. |
+| source | string(16) | `app` (the person, from an app) or `admin` (the admin panel). The counts use `app`. |
+| returned_at | timestamp nullable | The same email signed up again with the same role within the 30 days. |
+| anonymised_at | timestamp nullable | When `email` and `email_hash` were nulled. |
+| timestamps | | |
+
 ### `personal_access_tokens`
 
 Laravel Sanctum's token store (the `laravel/sanctum` default migration). The mobile apps authenticate with these bearer tokens.

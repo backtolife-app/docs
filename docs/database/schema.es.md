@@ -44,6 +44,32 @@ La única tabla de usuarios para todos los roles. Admin, User estándar (hijo) y
 !!! note
     Los campos de batería (`battery_level`, `battery_charging`, `battery_updated_at`) estuvieron brevemente en `users` pero se movieron a [`devices`](#devices) el 2026-05-21. Ya no existen en `users`.
 
+### `deleted_accounts` *(2026-10-27)*
+
+Una fila por eliminación de cuenta, escrita en el momento en que desaparece la fila de `users` (el `POST /delete-account` y el `DELETE /delete/myProfile` de las apps, el borrado de usuario del panel), para poder contar las bajas junto a las altas (la página Retention & Churn, el recap semanal). Las filas nunca se borran; 30 días después de la baja el comando `deleted-accounts:anonymise` (diario, 03:55 UTC) anula `email` y `email_hash` y sella `anonymised_at`. El resto no identifica a nadie y se queda. Nada de aquí bloquea un alta nueva con el mismo email.
+
+| Columna | Tipo | Notas |
+|---|---|---|
+| id | bigint PK | |
+| user_id | unsigned bigint (indexado) | El antiguo `users.id`. Sin FK: esa fila ya no existe. |
+| role | string(16) | `User`, `Parent` o `Admin`. |
+| email | text nullable | Cifrado en reposo. Null a los 30 días. |
+| email_hash | char(64) nullable (indexado) | sha256 del email en minúsculas: localiza una baja por email y detecta una vuelta. Null a los 30 días. |
+| platform | string(16) nullable | Del último dispositivo visto (`ios`, `android`). |
+| country | char(2) nullable | |
+| language | string(16) nullable | |
+| account_created_at | timestamp nullable | |
+| deleted_at | timestamp (indexado) | Cuándo se fue la cuenta. No es un soft delete. |
+| account_age_days | unsigned int | |
+| was_premium | boolean | Un derecho premium activo en el momento de la baja. |
+| activated | boolean | User: llegó a activar un filtro. Parent: llegó a vincular un hijo. |
+| linked_children | unsigned smallint | Solo padres. |
+| linked_parents | unsigned smallint | Solo usuarios. |
+| source | string(16) | `app` (la persona, desde una app) o `admin` (el panel). Los conteos usan `app`. |
+| returned_at | timestamp nullable | El mismo email se dio de alta de nuevo con el mismo rol dentro de los 30 días. |
+| anonymised_at | timestamp nullable | Cuándo se anularon `email` y `email_hash`. |
+| timestamps | | |
+
 ### `personal_access_tokens`
 
 Almacén de tokens de Laravel Sanctum (migración por defecto de `laravel/sanctum`). Las apps móviles se autentican con estos bearer tokens.
