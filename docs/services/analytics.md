@@ -68,6 +68,8 @@ The paywall in both apps is RevenueCat's own screen. Plan taps and the purchase 
 |-------|-----|------|------------|
 | `link_code_generated` | Parent, User | A linking code is produced. Parent: on the add-child screen. User: when the child shows their code, and again on regenerate. | `regenerated: true` on a regenerate (User). |
 | `parent_link_created` | User | The child's app learns it now has a parent: the parents fetch turns "has parent" from false to true. This is the event to join the two apps' journeys on. | none |
+| `link_code_redeemed` | Parent | The 8-character link code was accepted and the child is linked. Sent on the enter-code screen. | none |
+| `link_failed` | Parent | The link code was refused or the call failed; the parent lands on the error screen with the same reason. | `reason`: `invalid_code` (wrong, expired or already used, one bucket on the backend), `own_account`, `already_linked`, `other_family`, `offline`, `server`, `other`. |
 
 ### Rules, blocks and limits
 
