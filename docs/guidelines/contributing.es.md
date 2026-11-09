@@ -177,6 +177,10 @@ Un workflow de GitHub Actions se ejecuta en cada push o PR a `main` o `develop`:
 
 ## Notas por Repositorio
 
+### Las dos apps (`app/`, `parent/`)
+- Una llamada al backend que falla se le cuenta a la persona **una vez**, desde el `handleErrorWithReturn` del rx, con `ToastUtil.showBackendError(error, fallback: (l10n) => l10n.…)` (`lib/helpers/toast.dart` en cada app). Muestra el `message` del servidor, si no la primera entrada de `errors` (ya en el idioma de la petición), si no el fallback localizado; un 5xx se lee como el error genérico.
+- Nunca leas `error.response!.data[...]` en un rx (lanza sin conexión y la persona no ve nada), y nunca lances un toast genérico en la pantalla cuando su rx devolvió `false`: cada toast borra el anterior, así que el segundo tapa el motivo (parent-app#137). Detalles e historia de la regla: `docs/architecture/ui-templates.md` de cada app.
+
 ### App (`app/`)
 - Ejecuta `flutter analyze` localmente antes de hacer push — el CI impone cero advertencias
 - Las pruebas están en `test/` divididas en `widget/`, `models/` y `helpers/`

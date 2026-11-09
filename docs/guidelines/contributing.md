@@ -175,6 +175,10 @@ One GitHub Actions workflow runs on every push or PR to `main` or `develop`:
 
 ## Repo-Specific Notes
 
+### Both apps (`app/`, `parent/`)
+- A failed backend call is told to the person **once**, from the rx's `handleErrorWithReturn`, through `ToastUtil.showBackendError(error, fallback: (l10n) => l10n.…)` (`lib/helpers/toast.dart` in each app). It shows the server's `message`, else its first `errors` entry (already in the request's language), else the localized fallback; a 5xx reads as the generic error.
+- Never read `error.response!.data[...]` in an rx (it throws offline and the person sees nothing), and never toast a generic line in the screen when its rx returned `false`: every toast clears the previous one, so the second wipes the reason (parent-app#137). Details and the rule's history: each app's `docs/architecture/ui-templates.md`.
+
 ### App (`app/`)
 - Run `flutter analyze` locally before pushing — the CI enforces zero warnings
 - Tests live in `test/` split into `widget/`, `models/`, and `helpers/`
